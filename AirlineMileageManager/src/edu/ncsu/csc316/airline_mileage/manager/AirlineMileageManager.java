@@ -16,7 +16,6 @@ public class AirlineMileageManager {
                                                // then first
     private ArrayList<Flight> flights; // alphabetical by airline code
     private ArrayList<Airline> airlines;
-    private Object[][] customer_data;
     
     /**
      * Constructs an AirlineMileageManager
@@ -31,8 +30,8 @@ public class AirlineMileageManager {
     public AirlineMileageManager(String pathToAirlineFile, String pathToCustomerFile, String pathToFlightFile) {
         try {
             airlines = AirlineFileReader.readfile(pathToAirlineFile);
-            customer_data = CustomerFileReader.readfile(pathToCustomerFile);
             flights = FlightFileReader.readfile(pathToFlightFile);
+            customers = CustomerFileReader.readfile(pathToCustomerFile, flights);
             createCardholderObjects();
         } catch (FileNotFoundException e) {
             System.out.println("Invalid filename");

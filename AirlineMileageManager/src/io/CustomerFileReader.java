@@ -5,6 +5,10 @@ import java.io.FileNotFoundException;
 import java.util.Calendar;
 import java.util.Scanner;
 
+import edu.ncsu.csc316.airline_mileage.data.Customer;
+import edu.ncsu.csc316.airline_mileage.data.Flight;
+import edu.ncsu.csc316.airline_mileage.util.ArrayList;
+
 public class CustomerFileReader {
     
     /*
@@ -16,18 +20,11 @@ public class CustomerFileReader {
      * I'll have access to the flight objects already created when reading in
      * the flight file.
      */
-    public static Object[][] readfile(String filename) throws FileNotFoundException {
-        Scanner countLines = new Scanner(new File(filename));
-        int lines = 0;
-        while (countLines.hasNextLine()) {
-            lines++;
-            countLines.nextLine();
-        }
-        countLines.close();
-        Object[][] data = new Object[lines][6];
+    public static ArrayList<Customer> readfile(String filename, ArrayList<Flight> flights)
+            throws FileNotFoundException {
+        ArrayList<Customer> customers = new ArrayList<Customer>();
         Scanner scan = new Scanner(new File(filename));
         scan.nextLine(); // skips first line that describes each column
-        int currentLine = 0;
         while (scan.hasNextLine()) {
             scan.useDelimiter(",");
             String first = scan.next();
@@ -42,15 +39,34 @@ public class CustomerFileReader {
             String flight = scan.next();
             String origin = scan.next();
             String dest = scan.next();
-            data[currentLine][0] = first;
-            data[currentLine][1] = last;
-            data[currentLine][2] = date;
-            data[currentLine][3] = flight;
-            data[currentLine][4] = origin;
-            data[currentLine][5] = dest;
-            currentLine++;
+            boolean already_in_system = false;
+            int customer_location = -1;
+            for (int i = 0; i < customers.size(); i++) {
+                if (customers.get(i).getFirstName().equals(first)
+                        && customers.get(i).getLastName().equals(last)) {
+                    already_in_system = true; // customer already exists
+                    customer_location = i;
+                }
+            }
+            if (already_in_system) {
+                // add flight to their list of flights
+                customers.get(customer_location)
+                        .addFlight(findMatch(date, flight, origin, dest, flights));
+            } else {
+                // create new customer, add flight to their list, add to array
+                // list
+                Customer x = new Customer(first, last);
+                x.addFlight(findMatch(date, flight, origin, dest, flights));
+                customers.add(x);
+            }
         }
         scan.close();
-        return data;
+        return customers;
+    }
+    
+    private static Flight findMatch(Calendar date, String flight, String origin, String destination,
+            ArrayList<Flight> flights) {
+        // find matching flight
+        return null;
     }
 }
