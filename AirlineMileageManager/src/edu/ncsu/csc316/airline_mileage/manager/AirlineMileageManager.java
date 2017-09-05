@@ -3,7 +3,7 @@ package edu.ncsu.csc316.airline_mileage.manager;
 import java.io.FileNotFoundException;
 
 import edu.ncsu.csc316.airline_mileage.data.Airline;
-import edu.ncsu.csc316.airline_mileage.data.Cardholder;
+import edu.ncsu.csc316.airline_mileage.data.Customer;
 import edu.ncsu.csc316.airline_mileage.data.Flight;
 import edu.ncsu.csc316.airline_mileage.util.ArrayList;
 import io.AirlineFileReader;
@@ -12,7 +12,7 @@ import io.FlightFileReader;
 
 public class AirlineMileageManager {
     
-    private ArrayList<Cardholder> customers; // alphabetical by last name,
+    private ArrayList<Customer> customers; // alphabetical by last name,
                                                // then first
     private ArrayList<Flight> flights; // alphabetical by airline code
     private ArrayList<Airline> airlines;
