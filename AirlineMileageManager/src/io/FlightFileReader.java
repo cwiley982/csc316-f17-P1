@@ -6,12 +6,12 @@ import java.util.Calendar;
 import java.util.Scanner;
 
 import edu.ncsu.csc316.airline_mileage.data.Flight;
-import edu.ncsu.csc316.airline_mileage.util.ArrayList;
+import edu.ncsu.csc316.airline_mileage.util.LinkedList;
 
 public class FlightFileReader {
     
-    public static ArrayList<Flight> readfile(String filename) throws FileNotFoundException {
-        ArrayList<Flight> flights = new ArrayList<Flight>();
+    public static LinkedList<Flight> readfile(String filename) throws FileNotFoundException {
+        LinkedList<Flight> flights = new LinkedList<Flight>();
         Scanner scan = new Scanner(new File(filename));
         scan.nextLine(); // skips first line that describes each column
         while (scan.hasNextLine()) {

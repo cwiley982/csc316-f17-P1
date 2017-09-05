@@ -2,7 +2,7 @@ package edu.ncsu.csc316.airline_mileage.data;
 
 import java.util.Calendar;
 
-public class Flight implements Comparable {
+public class Flight implements Comparable<Flight> {
     
     private Calendar date;
     private int day_of_week;
@@ -193,5 +193,15 @@ public class Flight implements Comparable {
      */
     public void setArrival_delay(int arrival_delay) {
         this.arrival_delay = arrival_delay;
+    }
+    
+    @Override
+    public int compareTo(Flight o) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+    
+    public String getFlightString() {
+        return airline + flight_number;
     }
 }

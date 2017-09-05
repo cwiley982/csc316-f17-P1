@@ -1,22 +1,23 @@
 package edu.ncsu.csc316.airline_mileage.data;
 
-import edu.ncsu.csc316.airline_mileage.util.ArrayList;
+import edu.ncsu.csc316.airline_mileage.util.LinkedList;
 
-public class Customer implements Comparable<E> {
+public class Customer implements Comparable<Customer> {
     
     private String first_name;
     private String last_name;
-    private ArrayList<Flight> flights;
+    private LinkedList<Flight> flights;
     
     public Customer(String first_name, String last_name) {
         setFirstName(first_name);
         setLastName(last_name);
-        flights = null;
+        flights = new LinkedList<Flight>();
     }
     
     public void addFlight(Flight f) {
         flights.add(f);
-        // TODO
+        // TODO - this might actually be enough, maybe update mileage
+        // report/miles though
     }
     
     public void getMileageReport() {
@@ -51,6 +52,17 @@ public class Customer implements Comparable<E> {
      */
     private void setLastName(String last_name) {
         this.last_name = last_name;
+    }
+    
+    @Override
+    public int compareTo(Customer o) {
+        // sort by last name, then first
+        if (o.getLastName().compareToIgnoreCase(this.getLastName()) == 0) {
+            // last names are the same, compare first names
+            return o.getFirstName().compareToIgnoreCase(this.getFirstName());
+        } else {
+            return o.getLastName().compareToIgnoreCase(this.getLastName());
+        }
     }
     
 }

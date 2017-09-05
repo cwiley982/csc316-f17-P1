@@ -1,6 +1,6 @@
 package edu.ncsu.csc316.airline_mileage.data;
 
-public class Airline implements Comparable {
+public class Airline implements Comparable<Airline> {
     
     private String description;
     private String airline_code;
@@ -72,6 +72,12 @@ public class Airline implements Comparable {
      */
     private void setCountry(String country) {
         this.country = country;
+    }
+    
+    @Override
+    public int compareTo(Airline o) {
+        // TODO Auto-generated method stub
+        return 0;
     }
     
 }
