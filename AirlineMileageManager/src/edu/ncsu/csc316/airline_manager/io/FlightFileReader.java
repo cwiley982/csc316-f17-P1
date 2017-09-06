@@ -1,4 +1,4 @@
-package io;
+package edu.ncsu.csc316.airline_manager.io;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -30,6 +30,7 @@ public class FlightFileReader {
             int act_depart = scan.nextInt();
             int distance = scan.nextInt();
             int sched_arr = scan.nextInt();
+            scan.useDelimiter("\n");
             int arr_delay = scan.nextInt();
             flights.add(new Flight(date, day_of_week, airline, flight_num, origin, dest,
                     sched_depart, act_depart, distance, sched_arr, arr_delay));

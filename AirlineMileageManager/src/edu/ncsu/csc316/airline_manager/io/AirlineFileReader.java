@@ -1,4 +1,4 @@
-package io;
+package edu.ncsu.csc316.airline_manager.io;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,6 +18,7 @@ public class AirlineFileReader {
             String description = scan.next();
             String airline_code = scan.next();
             String callsign = scan.next();
+            scan.useDelimiter("\n");
             String country = scan.next();
             airlines.add(new Airline(description, airline_code, callsign, country));
         }

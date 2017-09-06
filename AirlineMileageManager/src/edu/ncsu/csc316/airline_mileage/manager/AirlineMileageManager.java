@@ -3,13 +3,13 @@ package edu.ncsu.csc316.airline_mileage.manager;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+import edu.ncsu.csc316.airline_manager.io.AirlineFileReader;
+import edu.ncsu.csc316.airline_manager.io.CustomerFileReader;
+import edu.ncsu.csc316.airline_manager.io.FlightFileReader;
 import edu.ncsu.csc316.airline_mileage.data.Airline;
 import edu.ncsu.csc316.airline_mileage.data.Customer;
 import edu.ncsu.csc316.airline_mileage.data.Flight;
 import edu.ncsu.csc316.airline_mileage.util.LinkedList;
-import io.AirlineFileReader;
-import io.CustomerFileReader;
-import io.FlightFileReader;
 
 public class AirlineMileageManager {
     

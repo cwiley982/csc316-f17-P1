@@ -40,6 +40,9 @@ public class Customer implements Comparable<Customer> {
      *            the first_name to set
      */
     private void setFirstName(String first_name) {
+        if (first_name == null || first_name.isEmpty()) {
+            throw new IllegalArgumentException("Invalid first name.");
+        }
         this.first_name = first_name;
     }
     
@@ -55,17 +58,32 @@ public class Customer implements Comparable<Customer> {
      *            the last_name to set
      */
     private void setLastName(String last_name) {
+        if (last_name == null || last_name.isEmpty()) {
+            throw new IllegalArgumentException("Invalid last name.");
+        }
         this.last_name = last_name;
     }
     
     @Override
     public int compareTo(Customer o) {
         // sort by last name, then first
-        if (o.getLastName().compareToIgnoreCase(this.getLastName()) == 0) {
+        if (this.getLastName().compareToIgnoreCase(o.getLastName()) == 0) {
             // last names are the same, compare first names
-            return o.getFirstName().compareToIgnoreCase(this.getFirstName());
+            if (this.getFirstName().compareToIgnoreCase(o.getFirstName()) < 0) {
+                return -1;
+            } else if (this.getFirstName().compareToIgnoreCase(o.getFirstName()) > 0) {
+                return 1;
+            } else {
+                return 0;
+            }
         } else {
-            return o.getLastName().compareToIgnoreCase(this.getLastName());
+            if (this.getLastName().compareToIgnoreCase(o.getLastName()) < 0) {
+                return -1;
+            } else if (this.getLastName().compareToIgnoreCase(o.getLastName()) > 0) {
+                return 1;
+            } else {
+                return 0;
+            }
         }
     }
     

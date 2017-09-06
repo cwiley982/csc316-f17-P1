@@ -1,4 +1,4 @@
-package io;
+package edu.ncsu.csc316.airline_manager.io;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -38,6 +38,7 @@ public class CustomerFileReader {
             date.set(year, month, day);
             String flight = scan.next();
             String origin = scan.next();
+            scan.useDelimiter("\n");
             String dest = scan.next();
             
             Customer x = new Customer(first, last);
