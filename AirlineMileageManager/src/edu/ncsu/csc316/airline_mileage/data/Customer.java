@@ -7,21 +7,25 @@ public class Customer implements Comparable<Customer> {
     private String first_name;
     private String last_name;
     private LinkedList<Flight> flights;
+    private Miles miles;
     
     public Customer(String first_name, String last_name) {
         setFirstName(first_name);
         setLastName(last_name);
         flights = new LinkedList<Flight>();
+        miles = new Miles();
     }
     
     public void addFlight(Flight f) {
         flights.add(f);
-        // TODO - this might actually be enough, maybe update mileage
-        // report/miles though
+        // need to get full airline name before passing it into the method below
+        // TODO - update miles though
+        miles.addMiles(f.getAirline(), f.getDistance());
     }
     
     public void getMileageReport() {
-        // TODO
+        System.out.println(first_name + " " + last_name + " has earned\n");
+        miles.getMilesReport();
     }
     
     /**

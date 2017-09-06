@@ -19,6 +19,16 @@ public class Flight implements Comparable<Flight> {
     public Flight(Calendar date, int day_of_week, String airline, int flight_number, String origin,
             String dest, int sched_depart, int act_depart, int dist, int sched_arr, int arr_delay) {
         setDate(date);
+        setDayOfWeek(day_of_week);
+        setAirline(airline);
+        setFlightNumber(flight_number);
+        setOrigin(origin);
+        setDestination(dest);
+        setScheduledDeparture(sched_depart);
+        setActualDeparture(act_depart);
+        setDistance(dist);
+        setScheduledArrival(sched_arr);
+        setArrivalDelay(arr_delay);
     }
     
     public int compareTo() {
@@ -48,7 +58,7 @@ public class Flight implements Comparable<Flight> {
     /**
      * @return the day_of_week
      */
-    public int getDay_of_week() {
+    public int getDayOfWeek() {
         return day_of_week;
     }
     
@@ -56,7 +66,7 @@ public class Flight implements Comparable<Flight> {
      * @param day_of_week
      *            the day_of_week to set
      */
-    public void setDay_of_week(int day_of_week) {
+    private void setDayOfWeek(int day_of_week) {
         this.day_of_week = day_of_week;
     }
     
@@ -71,14 +81,14 @@ public class Flight implements Comparable<Flight> {
      * @param airline
      *            the airline to set
      */
-    public void setAirline(String airline) {
+    private void setAirline(String airline) {
         this.airline = airline;
     }
     
     /**
      * @return the flight_number
      */
-    public int getFlight_number() {
+    public int getFlightNumber() {
         return flight_number;
     }
     
@@ -86,7 +96,7 @@ public class Flight implements Comparable<Flight> {
      * @param flight_number
      *            the flight_number to set
      */
-    public void setFlight_number(int flight_number) {
+    private void setFlightNumber(int flight_number) {
         this.flight_number = flight_number;
     }
     
@@ -101,7 +111,7 @@ public class Flight implements Comparable<Flight> {
      * @param origin
      *            the origin to set
      */
-    public void setOrigin(String origin) {
+    private void setOrigin(String origin) {
         this.origin = origin;
     }
     
@@ -116,14 +126,14 @@ public class Flight implements Comparable<Flight> {
      * @param destination
      *            the destination to set
      */
-    public void setDestination(String destination) {
+    private void setDestination(String destination) {
         this.destination = destination;
     }
     
     /**
      * @return the scheduled_departure
      */
-    public int getScheduled_departure() {
+    public int getScheduledDeparture() {
         return scheduled_departure;
     }
     
@@ -131,14 +141,14 @@ public class Flight implements Comparable<Flight> {
      * @param scheduled_departure
      *            the scheduled_departure to set
      */
-    public void setScheduled_departure(int scheduled_departure) {
+    private void setScheduledDeparture(int scheduled_departure) {
         this.scheduled_departure = scheduled_departure;
     }
     
     /**
      * @return the actual_departure
      */
-    public int getActual_departure() {
+    public int getActualDeparture() {
         return actual_departure;
     }
     
@@ -146,7 +156,7 @@ public class Flight implements Comparable<Flight> {
      * @param actual_departure
      *            the actual_departure to set
      */
-    public void setActual_departure(int actual_departure) {
+    private void setActualDeparture(int actual_departure) {
         this.actual_departure = actual_departure;
     }
     
@@ -161,14 +171,14 @@ public class Flight implements Comparable<Flight> {
      * @param distance
      *            the distance to set
      */
-    public void setDistance(int distance) {
+    private void setDistance(int distance) {
         this.distance = distance;
     }
     
     /**
      * @return the scheduled_arrival
      */
-    public int getScheduled_arrival() {
+    public int getScheduledArrival() {
         return scheduled_arrival;
     }
     
@@ -176,14 +186,14 @@ public class Flight implements Comparable<Flight> {
      * @param scheduled_arrival
      *            the scheduled_arrival to set
      */
-    public void setScheduled_arrival(int scheduled_arrival) {
+    private void setScheduledArrival(int scheduled_arrival) {
         this.scheduled_arrival = scheduled_arrival;
     }
     
     /**
      * @return the arrival_delay
      */
-    public int getArrival_delay() {
+    public int getArrivalDelay() {
         return arrival_delay;
     }
     
@@ -191,7 +201,7 @@ public class Flight implements Comparable<Flight> {
      * @param arrival_delay
      *            the arrival_delay to set
      */
-    public void setArrival_delay(int arrival_delay) {
+    private void setArrivalDelay(int arrival_delay) {
         this.arrival_delay = arrival_delay;
     }
     

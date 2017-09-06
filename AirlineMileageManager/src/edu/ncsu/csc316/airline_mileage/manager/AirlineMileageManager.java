@@ -13,8 +13,8 @@ import io.FlightFileReader;
 
 public class AirlineMileageManager {
     
-    private LinkedList<Customer> customers; // alphabetical by last name,
-                                               // then first
+    private LinkedList<Customer> customers; // alphabetical by last then first
+                                            // name
     private LinkedList<Flight> flights; // alphabetical by airline code
     private LinkedList<Airline> airlines;
     
