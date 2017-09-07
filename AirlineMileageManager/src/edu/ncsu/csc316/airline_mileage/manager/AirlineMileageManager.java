@@ -63,15 +63,15 @@ public class AirlineMileageManager {
      *            - the customer's last name
      * @return the frequent flier mileage information for the customer
      */
-    public void getMiles(String firstName, String lastName) {
+    public String getMiles(String firstName, String lastName) {
         // find customer with matching first and last name, print their report
         Customer c = new Customer(firstName, lastName);
         for (int i = 0; i < customers.size(); i++) {
             if (customers.get(i).equals(c)) {
-                customers.get(i).getMileageReport();
-                break;
+                return customers.get(i).getMileageReport();
             }
         }
+        return null;
     }
     
     public void main(String[] args) {

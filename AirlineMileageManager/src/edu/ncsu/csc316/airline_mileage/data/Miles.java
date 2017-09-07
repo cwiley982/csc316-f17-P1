@@ -15,9 +15,11 @@ public class Miles {
         
     }
     
-    public void getMilesReport() {
+    public String getMilesReport() {
+        String milesReport = "";
         for (int i = 0; i < rows; i++) {
-            System.out.println("\t" + mileage[i][1] + " miles with " + mileage[i][0] + "\n");
+            milesReport += "\t" + mileage[i][1] + " miles with " + mileage[i][0] + "\n";
         }
+        return milesReport;
     }
 }

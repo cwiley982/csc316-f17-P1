@@ -23,9 +23,10 @@ public class Customer implements Comparable<Customer> {
         miles.addMiles(f.getAirline(), f.getDistance());
     }
     
-    public void getMileageReport() {
-        System.out.println(first_name + " " + last_name + " has earned\n");
-        miles.getMilesReport();
+    public String getMileageReport() {
+        String report = "";
+        report += first_name + " " + last_name + " has earned\n" + miles.getMilesReport();
+        return report;
     }
     
     /**
