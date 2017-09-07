@@ -63,10 +63,15 @@ public class AirlineMileageManager {
      *            - the customer's last name
      * @return the frequent flier mileage information for the customer
      */
-    public String getMiles(String firstName, String lastName) {
-        return null;
-        // TODO: add your implementation
+    public void getMiles(String firstName, String lastName) {
         // find customer with matching first and last name, print their report
+        Customer c = new Customer(firstName, lastName);
+        for (int i = 0; i < customers.size(); i++) {
+            if (customers.get(i).equals(c)) {
+                customers.get(i).getMileageReport();
+                break;
+            }
+        }
     }
     
     public void main(String[] args) {
@@ -87,7 +92,12 @@ public class AirlineMileageManager {
             // handle user requests
             if (command.equalsIgnoreCase("Q")) {
                 // get first and last name
+                System.out.println("Enter the first name of the customer: ");
+                String firstName = in.next();
+                System.out.println("Enter the last name of the customer: ");
+                String lastName = in.next();
                 // print customer report
+                manager.getMiles(firstName, lastName);
             } else if (command.equalsIgnoreCase("R")) {
                 manager.getMileageReport();
             } else {

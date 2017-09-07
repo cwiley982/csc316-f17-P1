@@ -1,8 +1,8 @@
 package edu.ncsu.csc316.airline_mileage.util;
 
-public class LinkedList<E> {
+public class LinkedList<E extends Comparable<E>> {
     
-    private Node front;
+    private Node<E> front;
     private int size;
     
     /**
@@ -27,24 +27,33 @@ public class LinkedList<E> {
         if (contains(element)) {
             throw new IllegalArgumentException();
         }
-        // nope, need to sort
-        if (front == null) {
-            front = new Node(element, null);
-            size++;
-            return true;
-        } else {
-            Node current = front;
-            while (current.next != null) {
-                current = current.next;
-            }
-            current.next = new Node(element, null);
+        
+        if (front == null || element.compareTo((E) front.value) == -1) {
+            // element comes before current, add to front
+            front = new Node<E>(element, front);
             size++;
             return true;
         }
+        
+        Node<E> current = front;
+        boolean cont = true;
+        while (cont) {
+            if (current.next == null || element.compareTo((E) current.next.value) == -1) {
+                // next value is null, element has to be next OR
+                // element comes before next but after current, stop traversing
+                cont = false;
+            } else if (element.compareTo((E) current.next.value) == 1) {
+                // element comes after next node, keep traversing list
+                current = current.next;
+            }
+        }
+        current.next = new Node<E>(element, current.next);
+        size++;
+        return true;
     }
     
     public boolean contains(E element) {
-        Node current = front;
+        Node<E> current = front;
         for (int i = 0; i < size; i++) { // checks entire list for a duplicate
             if (current.value.equals(element)) {
                 return true;
@@ -58,15 +67,15 @@ public class LinkedList<E> {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
-        Node current = front;
+        Node<E> current = front;
         for (int i = 0; i < index; i++) {
             current = current.next;
         }
-        return current.value;
+        return (E) current.value;
     }
     
     public int indexOf(E element) {
-        Node current = front;
+        Node<E> current = front;
         for (int i = 0; i < size; i++) {
             if (current.value == element) {
                 return i;
@@ -84,12 +93,12 @@ public class LinkedList<E> {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
-        Node removedNode = null;
+        Node<E> removedNode = null;
         if (index == 0) {
             removedNode = front;
             front = front.next;
         } else {
-            Node current = front;
+            Node<E> current = front;
             for (int i = 0; i < index - 1; i++) {
                 current = current.next;
             }
@@ -97,7 +106,7 @@ public class LinkedList<E> {
             current.next = current.next.next;
         }
         size--;
-        return removedNode.value;
+        return (E) removedNode.value;
     }
     
     public int size() {
@@ -110,10 +119,11 @@ public class LinkedList<E> {
      * @author Caitlyn
      *
      */
-    public class Node {
+    @SuppressWarnings("hiding")
+    public class Node<E> {
         /** Value of the node */
         E value;
-        private Node next;
+        private Node<E> next;
         
         /**
          * Constructs a node with an element and a reference to the next node in
@@ -124,7 +134,7 @@ public class LinkedList<E> {
          * @param node
          *            the next node after the one being created
          */
-        public Node(E element, Node node) {
+        public Node(E element, Node<E> node) {
             if (element == null) {
                 throw new NullPointerException();
             }

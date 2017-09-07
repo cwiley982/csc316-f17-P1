@@ -66,24 +66,35 @@ public class Customer implements Comparable<Customer> {
     
     @Override
     public int compareTo(Customer o) {
+        Customer c = (Customer) o;
         // sort by last name, then first
-        if (this.getLastName().compareToIgnoreCase(o.getLastName()) == 0) {
+        if (this.getLastName().compareToIgnoreCase(c.getLastName()) == 0) {
             // last names are the same, compare first names
-            if (this.getFirstName().compareToIgnoreCase(o.getFirstName()) < 0) {
+            if (this.getFirstName().compareToIgnoreCase(c.getFirstName()) < 0) {
                 return -1;
-            } else if (this.getFirstName().compareToIgnoreCase(o.getFirstName()) > 0) {
+            } else if (this.getFirstName().compareToIgnoreCase(c.getFirstName()) > 0) {
                 return 1;
             } else {
                 return 0;
             }
         } else {
-            if (this.getLastName().compareToIgnoreCase(o.getLastName()) < 0) {
+            if (this.getLastName().compareToIgnoreCase(c.getLastName()) < 0) {
                 return -1;
-            } else if (this.getLastName().compareToIgnoreCase(o.getLastName()) > 0) {
+            } else if (this.getLastName().compareToIgnoreCase(c.getLastName()) > 0) {
                 return 1;
             } else {
                 return 0;
             }
+        }
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        Customer c = (Customer) o;
+        if (first_name.equals(c.getFirstName()) && last_name.equals(c.getLastName())) {
+            return true;
+        } else {
+            return false;
         }
     }
     

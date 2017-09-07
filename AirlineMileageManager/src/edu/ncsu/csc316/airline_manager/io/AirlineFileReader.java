@@ -13,13 +13,15 @@ public class AirlineFileReader {
         LinkedList<Airline> airlines = new LinkedList<Airline>();
         Scanner scan = new Scanner(new File(filename));
         scan.nextLine(); // skips first line that describes each column
+        Scanner lineScan;
         while (scan.hasNextLine()) {
-            scan.useDelimiter(",");
-            String description = scan.next();
-            String airline_code = scan.next();
-            String callsign = scan.next();
-            scan.useDelimiter("\n");
-            String country = scan.next();
+            String line = scan.nextLine();
+            lineScan = new Scanner(line);
+            lineScan.useDelimiter(",");
+            String description = lineScan.next();
+            String airline_code = lineScan.next();
+            String callsign = lineScan.next();
+            String country = lineScan.next();
             airlines.add(new Airline(description, airline_code, callsign, country));
         }
         scan.close();

@@ -48,27 +48,6 @@ public class CustomerFileReader {
                 // customer exists, just add flight to customer object
             }
             x.addFlight(findMatch(date, flight, origin, dest, flights));
-            
-            // boolean already_in_system = false;
-            // int customer_location = -1;
-            /*
-             * for (int i = 0; i < customers.size(); i++) { if
-             * (customers.get(i).getFirstName().equals(first) &&
-             * customers.get(i).getLastName().equals(last)) { already_in_system
-             * = true; // customer already exists customer_location = i; } }
-             */
-//            if (already_in_system) { 
-//                // add flight to their list of flights
-//            customers.get(customer_location).addFlight(findMatch(date, flight, origin, dest, 
-//                    flights));
-//            } else { 
-//                // create new customer,add flight to their list, add to array 
-//                // list 
-//                Customer x = new Customer(first, last); x.addFlight(findMatch(date, flight, origin,
-//                        dest, flights));
-//                customers.add(x);
-//            }
-             
         }
         scan.close();
         return customers;

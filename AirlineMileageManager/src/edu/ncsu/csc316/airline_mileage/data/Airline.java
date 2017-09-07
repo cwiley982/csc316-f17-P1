@@ -76,8 +76,16 @@ public class Airline implements Comparable<Airline> {
     
     @Override
     public int compareTo(Airline o) {
-        // TODO Auto-generated method stub
-        return 0;
+        // cast to airline
+        Airline a = (Airline) o;
+        // sort by description (airline name)
+        if (description.compareTo(a.getDescription()) > 0) {
+            return 1;
+        } else if (description.compareTo(a.getDescription()) < 0) {
+            return -1;
+        } else {
+            return 0;
+        }
     }
     
 }
