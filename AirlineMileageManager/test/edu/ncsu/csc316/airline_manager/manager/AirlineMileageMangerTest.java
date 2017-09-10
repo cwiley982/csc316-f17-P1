@@ -28,7 +28,6 @@ public class AirlineMileageMangerTest {
         assertEquals(erickMcfarlandReport, manager.getMiles("Erick", "Mcfarland"));
         assertEquals(kassandraStiltnerReport, manager.getMiles("Kassandra", "Stiltner"));
         assertEquals(fullReport, manager.getMileageReport());
-        
     }
     
 }
