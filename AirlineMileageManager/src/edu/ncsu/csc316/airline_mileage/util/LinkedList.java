@@ -74,41 +74,6 @@ public class LinkedList<E extends Comparable<E>> {
         return (E) current.value;
     }
     
-    public int indexOf(E element) {
-        Node<E> current = front;
-        for (int i = 0; i < size; i++) {
-            if (current.value == element) {
-                return i;
-            }
-            current = current.next;
-        }
-        return -1;
-    }
-    
-    public boolean isEmpty() {
-        return size == 0;
-    }
-    
-    public E remove(int index) {
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException();
-        }
-        Node<E> removedNode = null;
-        if (index == 0) {
-            removedNode = front;
-            front = front.next;
-        } else {
-            Node<E> current = front;
-            for (int i = 0; i < index - 1; i++) {
-                current = current.next;
-            }
-            removedNode = current.next;
-            current.next = current.next.next;
-        }
-        size--;
-        return (E) removedNode.value;
-    }
-    
     public int size() {
         return size;
     }

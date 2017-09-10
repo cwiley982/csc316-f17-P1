@@ -41,6 +41,11 @@ public class FlightFileReaderTest {
             assertEquals("B6", actual.get(0).getAirlineCode());
             assertEquals("ATL", actual.get(1).getOrigin());
             assertEquals(-20, actual.get(2).getArrivalDelay());
+            assertEquals(2, actual.get(0).getDayOfWeek());
+            assertEquals(1233, actual.get(1).getFlightNumber());
+            assertEquals(1855, actual.get(0).getScheduledDeparture());
+            assertEquals(1026, actual.get(1).getActualDeparture());
+            assertEquals(1139, actual.get(2).getScheduledArrival());
             assertEquals(3, actual.size());
         } catch (FileNotFoundException e) {
             fail();

@@ -34,6 +34,7 @@ public class AirlineFileReaderTest {
             assertEquals("DELTA", actual.get(0).getCallsign());
             assertEquals("B6", actual.get(1).getAirline_code());
             assertEquals("United Airlines", actual.get(2).getDescription());
+            assertEquals("United States", actual.get(2).getCountry());
         } catch (FileNotFoundException e) {
             fail();
         }
