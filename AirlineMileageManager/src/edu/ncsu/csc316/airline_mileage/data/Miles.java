@@ -14,8 +14,8 @@ public class Miles {
     public void addMiles(String airline, String airline_code, int miles) {
         boolean airlineExists = false;
         for (int i = 0; i < rows; i++) {
-            if (mileage[i][0].equals(airline)) {
-                mileage[i][1] = (Integer) mileage[i][1] + miles;
+            if (mileage[i][1].equals(airline)) {
+                mileage[i][0] = (Integer) mileage[i][0] + miles;
                 airlineExists = true;
                 break;
             }
@@ -24,14 +24,15 @@ public class Miles {
             mileage[rows][0] = miles;
             mileage[rows][1] = airline;
             mileage[rows][2] = "(" + airline_code + ")";
+            rows++;
         }
     }
     
     public String getMilesReport() {
         String milesReport = "";
         for (int i = 0; i < rows; i++) {
-            milesReport += "\t" + mileage[i][1] + " miles with " + mileage[i][0] + " "
-                    + mileage[i][2] + "\n";
+            milesReport += "\n\t" + mileage[i][0] + " miles with " + mileage[i][1] + " "
+                    + mileage[i][2];
         }
         return milesReport;
     }

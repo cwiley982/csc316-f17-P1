@@ -1,29 +1,24 @@
 package edu.ncsu.csc316.airline_mileage.data;
 
-import edu.ncsu.csc316.airline_mileage.util.LinkedList;
-
 public class Customer implements Comparable<Customer> {
     
     private String first_name;
     private String last_name;
-    private LinkedList<Flight> flights;
     private Miles miles;
     
     public Customer(String first_name, String last_name) {
         setFirstName(first_name);
         setLastName(last_name);
-        flights = new LinkedList<Flight>();
         miles = new Miles();
     }
     
     public void addFlight(Flight f) {
-        flights.add(f);
         miles.addMiles(f.getAirline(), f.getAirlineCode(), f.getDistance());
     }
     
     public String getMileageReport() {
         String report = "";
-        report += first_name + " " + last_name + " has earned\n" + miles.getMilesReport();
+        report += first_name + " " + last_name + " earned" + miles.getMilesReport();
         return report;
     }
     

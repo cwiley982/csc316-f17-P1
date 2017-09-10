@@ -30,17 +30,7 @@ public class CustomerFileReader {
             lineScan.useDelimiter(",");
             String first = lineScan.next();
             String last = lineScan.next();
-            
             String dateString = lineScan.next();
-            Scanner dateScan = new Scanner(dateString);
-            dateScan.useDelimiter("/");
-            int month = dateScan.nextInt();
-            int day = dateScan.nextInt();
-            int year = dateScan.nextInt();
-            dateScan.close();
-            // Calendar date = Calendar.getInstance();
-            // date.set(year, month, day);
-            
             String flight = lineScan.next();
             String origin = lineScan.next();
             String dest = lineScan.next();
@@ -50,7 +40,12 @@ public class CustomerFileReader {
             try {
                 customers.add(x);
             } catch (IllegalArgumentException e) {
-                // customer exists, just add flight to customer object
+                // customer exists, get original customer object
+                for (int i = 0; i < customers.size(); i++) {
+                    if (customers.get(i).equals(x)) {
+                        x = customers.get(i);
+                    }
+                }
             }
             x.addFlight(findMatch(dateString, flight, origin, dest, flights));
         }
