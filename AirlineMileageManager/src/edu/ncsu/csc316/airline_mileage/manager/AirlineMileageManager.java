@@ -32,12 +32,16 @@ public class AirlineMileageManager {
      *            - path to the flight information file
      */
     public AirlineMileageManager(String pathToAirlineFile, String pathToCustomerFile,
-            String pathToFlightFile) throws FileNotFoundException {
-        airlines = AirlineFileReader.readfile(pathToAirlineFile);
-        airlineCodesAndNames = AirlineFileReader.get2DArray(airlines);
-        
-        flights = FlightFileReader.readfile(pathToFlightFile, airlineCodesAndNames);
-        customers = CustomerFileReader.readfile(pathToCustomerFile, flights);
+            String pathToFlightFile) {
+        try {
+            airlines = AirlineFileReader.readfile(pathToAirlineFile);
+            airlineCodesAndNames = AirlineFileReader.get2DArray(airlines);
+            
+            flights = FlightFileReader.readfile(pathToFlightFile, airlineCodesAndNames);
+            customers = CustomerFileReader.readfile(pathToCustomerFile, flights);
+        } catch (FileNotFoundException e) {
+            // TODO
+        }
     }
     
     /**
@@ -89,35 +93,32 @@ public class AirlineMileageManager {
         System.out.println("Please enter the customer information filename: ");
         String customer_filename = in.next();
         AirlineMileageManager manager;
-        try {
-            manager = new AirlineMileageManager(airline_filename,
+        
+        manager = new AirlineMileageManager(airline_filename,
                 customer_filename, flight_filename);
+        System.out.println(
+                "Would you like to query a customer (Q), print a mileage report (R), or exit the program (E)? ");
+        String command = in.next();
+        while (!command.equalsIgnoreCase("E")) {
+            // handle user requests
+            if (command.equalsIgnoreCase("Q")) {
+                // get first and last name
+                System.out.println("Enter the first name of the customer: ");
+                String firstName = in.next();
+                System.out.println("Enter the last name of the customer: ");
+                String lastName = in.next();
+                // print customer report
+                manager.getMiles(firstName, lastName);
+            } else if (command.equalsIgnoreCase("R")) {
+                manager.getMileageReport();
+            } else {
+                System.out.println("Invalid command. Please try again.");
+            }
             System.out.println(
                     "Would you like to query a customer (Q), print a mileage report (R), or exit the program (E)? ");
-            String command = in.next();
-            while (!command.equalsIgnoreCase("E")) {
-                // handle user requests
-                if (command.equalsIgnoreCase("Q")) {
-                    // get first and last name
-                    System.out.println("Enter the first name of the customer: ");
-                    String firstName = in.next();
-                    System.out.println("Enter the last name of the customer: ");
-                    String lastName = in.next();
-                    // print customer report
-                    manager.getMiles(firstName, lastName);
-                } else if (command.equalsIgnoreCase("R")) {
-                    manager.getMileageReport();
-                } else {
-                    System.out.println("Invalid command. Please try again.");
-                }
-                System.out.println(
-                        "Would you like to query a customer (Q), print a mileage report (R), or exit the program (E)? ");
-                command = in.next();
-            }
-            System.out.println("Thank you for using AirlineMileageManager!");
-        } catch (FileNotFoundException e) {
-            // print something
+            command = in.next();
         }
+        System.out.println("Thank you for using AirlineMileageManager!");
         
         in.close();
     }

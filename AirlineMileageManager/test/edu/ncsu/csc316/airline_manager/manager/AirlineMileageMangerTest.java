@@ -1,9 +1,6 @@
 package edu.ncsu.csc316.airline_manager.manager;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-
-import java.io.FileNotFoundException;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -27,14 +24,11 @@ public class AirlineMileageMangerTest {
     
     @Test
     public void test() {
-        try {
-            manager = new AirlineMileageManager(airlineFile, customerFile, flightFile);
-            assertEquals(erickMcfarlandReport, manager.getMiles("Erick", "Mcfarland"));
-            assertEquals(kassandraStiltnerReport, manager.getMiles("Kassandra", "Stiltner"));
-            assertEquals(fullReport, manager.getMileageReport());
-        } catch (FileNotFoundException e) {
-            fail();
-        }
+        manager = new AirlineMileageManager(airlineFile, customerFile, flightFile);
+        assertEquals(erickMcfarlandReport, manager.getMiles("Erick", "Mcfarland"));
+        assertEquals(kassandraStiltnerReport, manager.getMiles("Kassandra", "Stiltner"));
+        assertEquals(fullReport, manager.getMileageReport());
+        
     }
     
 }
