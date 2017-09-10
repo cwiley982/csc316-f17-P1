@@ -2,7 +2,6 @@ package edu.ncsu.csc316.airline_manager.io;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Calendar;
 import java.util.Scanner;
 
 import edu.ncsu.csc316.airline_mileage.data.Customer;
@@ -26,20 +25,26 @@ public class CustomerFileReader {
         Scanner scan = new Scanner(new File(filename));
         scan.nextLine(); // skips first line that describes each column
         while (scan.hasNextLine()) {
-            scan.useDelimiter(",");
-            String first = scan.next();
-            String last = scan.next();
-            scan.useDelimiter("/");
-            int month = scan.nextInt();
-            int day = scan.nextInt();
-            scan.useDelimiter(",");
-            int year = scan.nextInt();
-            Calendar date = Calendar.getInstance();
-            date.set(year, month, day);
-            String flight = scan.next();
-            String origin = scan.next();
-            scan.useDelimiter("\n");
-            String dest = scan.next();
+            String line = scan.nextLine();
+            Scanner lineScan = new Scanner(line);
+            lineScan.useDelimiter(",");
+            String first = lineScan.next();
+            String last = lineScan.next();
+            
+            String dateString = lineScan.next();
+            Scanner dateScan = new Scanner(dateString);
+            dateScan.useDelimiter("/");
+            int month = dateScan.nextInt();
+            int day = dateScan.nextInt();
+            int year = dateScan.nextInt();
+            dateScan.close();
+            // Calendar date = Calendar.getInstance();
+            // date.set(year, month, day);
+            
+            String flight = lineScan.next();
+            String origin = lineScan.next();
+            String dest = lineScan.next();
+            lineScan.close();
             
             Customer x = new Customer(first, last);
             try {
@@ -47,15 +52,15 @@ public class CustomerFileReader {
             } catch (IllegalArgumentException e) {
                 // customer exists, just add flight to customer object
             }
-            x.addFlight(findMatch(date, flight, origin, dest, flights));
+            x.addFlight(findMatch(dateString, flight, origin, dest, flights));
         }
         scan.close();
         return customers;
     }
     
-    private static Flight findMatch(Calendar date, String flight, String origin, String destination,
+    private static Flight findMatch(String date, String flight, String origin, String destination,
             LinkedList<Flight> flights) {
-        // find matching flight
+        // find matching flight, use binary search
         for (int i = 0; i < flights.size(); i++) {
             Flight x = flights.get(i);
             if (x.getDate().equals(date) && x.getFlightString().equals(flight)

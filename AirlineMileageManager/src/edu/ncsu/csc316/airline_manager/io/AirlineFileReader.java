@@ -27,4 +27,13 @@ public class AirlineFileReader {
         scan.close();
         return airlines;
     }
+    
+    public static String[][] get2DArray(LinkedList<Airline> airlines) {
+        String[][] array = new String[airlines.size()][2];
+        for (int i = 0; i < airlines.size(); i++) {
+            array[i][0] = airlines.get(i).getAirline_code();
+            array[i][1] = airlines.get(i).getDescription();
+        }
+        return array;
+    }
 }

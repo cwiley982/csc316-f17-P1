@@ -18,9 +18,7 @@ public class Customer implements Comparable<Customer> {
     
     public void addFlight(Flight f) {
         flights.add(f);
-        // need to get full airline name before passing it into the method below
-        // TODO - update miles though
-        miles.addMiles(f.getAirline(), f.getDistance());
+        miles.addMiles(f.getAirline(), f.getAirlineCode(), f.getDistance());
     }
     
     public String getMileageReport() {

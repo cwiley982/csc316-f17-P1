@@ -1,11 +1,10 @@
 package edu.ncsu.csc316.airline_mileage.data;
 
-import java.util.Calendar;
-
 public class Flight implements Comparable<Flight> {
     
-    private Calendar date;
+    private String date;
     private int day_of_week;
+    private String airline_code;
     private String airline;
     private int flight_number;
     private String origin;
@@ -16,10 +15,12 @@ public class Flight implements Comparable<Flight> {
     private int scheduled_arrival;
     private int arrival_delay;
     
-    public Flight(Calendar date, int day_of_week, String airline, int flight_number, String origin,
-            String dest, int sched_depart, int act_depart, int dist, int sched_arr, int arr_delay) {
+    public Flight(String date, int day_of_week, String airline_code, String airline,
+            int flight_number, String origin, String dest, int sched_depart, int act_depart,
+            int dist, int sched_arr, int arr_delay) {
         setDate(date);
         setDayOfWeek(day_of_week);
+        setAirlineCode(airline_code);
         setAirline(airline);
         setFlightNumber(flight_number);
         setOrigin(origin);
@@ -31,15 +32,10 @@ public class Flight implements Comparable<Flight> {
         setArrivalDelay(arr_delay);
     }
     
-    public int compareTo() {
-        return 2;
-        // TODO
-    }
-    
     /**
      * @return the date
      */
-    public Calendar getDate() {
+    public String getDate() {
         return date;
     }
     
@@ -51,7 +47,7 @@ public class Flight implements Comparable<Flight> {
      * @param day
      *            the day to use in the date
      */
-    private void setDate(Calendar date) {
+    private void setDate(String date) {
         this.date = date;
     }
     
@@ -73,16 +69,16 @@ public class Flight implements Comparable<Flight> {
     /**
      * @return the airline
      */
-    public String getAirline() {
-        return airline;
+    public String getAirlineCode() {
+        return airline_code;
     }
     
     /**
      * @param airline
      *            the airline to set
      */
-    private void setAirline(String airline) {
-        this.airline = airline;
+    private void setAirlineCode(String airline_code) {
+        this.airline_code = airline_code;
     }
     
     /**
@@ -176,28 +172,36 @@ public class Flight implements Comparable<Flight> {
     }
     
     /**
-     * @return the scheduled_arrival
+     * Gets the scheduled arrival for the flight
+     * 
+     * @return the scheduled arrival time for the flight
      */
     public int getScheduledArrival() {
         return scheduled_arrival;
     }
     
     /**
+     * Sets the scheduled arrival for the flight
+     * 
      * @param scheduled_arrival
-     *            the scheduled_arrival to set
+     *            the time the flight is scheduled to arrive
      */
     private void setScheduledArrival(int scheduled_arrival) {
         this.scheduled_arrival = scheduled_arrival;
     }
     
     /**
-     * @return the arrival_delay
+     * Gets the arrival delay for the flight
+     * 
+     * @return the arrival delay for the flight
      */
     public int getArrivalDelay() {
         return arrival_delay;
     }
     
     /**
+     * Sets the arrival delay for the flight
+     * 
      * @param arrival_delay
      *            the arrival_delay to set
      */
@@ -205,13 +209,31 @@ public class Flight implements Comparable<Flight> {
         this.arrival_delay = arrival_delay;
     }
     
+    /**
+     * Gets the full name of the airline (ie "United Airlines")
+     * 
+     * @return the name of the airline
+     */
+    public String getAirline() {
+        return airline;
+    }
+    
+    public void setAirline(String airline) {
+        this.airline = airline;
+    }
+    
     @Override
     public int compareTo(Flight o) {
-        // TODO Auto-generated method stub
-        return 0;
+        if (this.getFlightString().compareTo(o.getFlightString()) > 0) {
+            return 1;
+        } else if (this.getFlightString().compareTo(o.getFlightString()) < 1) {
+            return -1;
+        } else {
+            return 0;
+        }
     }
     
     public String getFlightString() {
-        return airline + flight_number;
+        return airline_code + flight_number;
     }
 }

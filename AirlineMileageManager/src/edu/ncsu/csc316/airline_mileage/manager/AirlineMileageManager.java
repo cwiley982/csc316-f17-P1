@@ -13,10 +13,13 @@ import edu.ncsu.csc316.airline_mileage.util.LinkedList;
 
 public class AirlineMileageManager {
     
-    private LinkedList<Customer> customers; // alphabetical by last then first
-                                            // name
-    private LinkedList<Flight> flights; // alphabetical by airline code
+    /** Holds a list of all customers from file specified by user */
+    private LinkedList<Customer> customers;
+    /** Holds a list of all flights from file specified by user */
+    private LinkedList<Flight> flights;
+    /** Holds a list of all airlines from file specified by user */
     private LinkedList<Airline> airlines;
+    private String[][] airlineCodesAndNames;
     
     /**
      * Constructs an AirlineMileageManager
@@ -31,7 +34,9 @@ public class AirlineMileageManager {
     public AirlineMileageManager(String pathToAirlineFile, String pathToCustomerFile, String pathToFlightFile) {
         try {
             airlines = AirlineFileReader.readfile(pathToAirlineFile);
-            flights = FlightFileReader.readfile(pathToFlightFile);
+            airlineCodesAndNames = AirlineFileReader.get2DArray(airlines);
+            
+            flights = FlightFileReader.readfile(pathToFlightFile, airlineCodesAndNames);
             customers = CustomerFileReader.readfile(pathToCustomerFile, flights);
         } catch (FileNotFoundException e) {
             System.out.println("Invalid filename");
