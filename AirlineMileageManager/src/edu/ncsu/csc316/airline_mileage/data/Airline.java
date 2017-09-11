@@ -24,7 +24,7 @@ public class Airline implements Comparable<Airline> {
     /**
      * @return the airline_code
      */
-    public String getAirline_code() {
+    public String getAirlineCode() {
         return airline_code;
     }
     
@@ -79,13 +79,7 @@ public class Airline implements Comparable<Airline> {
         // cast to airline
         Airline a = (Airline) o;
         // sort by description (airline name)
-        if (description.compareTo(a.getDescription()) > 0) {
-            return 1;
-        } else if (description.compareTo(a.getDescription()) < 0) {
-            return -1;
-        } else {
-            return 0;
-        }
+        return description.compareTo(a.getDescription());
     }
     
 }

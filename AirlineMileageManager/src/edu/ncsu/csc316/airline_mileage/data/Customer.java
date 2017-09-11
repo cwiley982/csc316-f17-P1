@@ -63,30 +63,47 @@ public class Customer implements Comparable<Customer> {
         // sort by last name, then first
         if (this.getLastName().compareToIgnoreCase(c.getLastName()) == 0) {
             // last names are the same, compare first names
-            if (this.getFirstName().compareToIgnoreCase(c.getFirstName()) < 0) {
-                return -1;
-            } else if (this.getFirstName().compareToIgnoreCase(c.getFirstName()) > 0) {
-                return 1;
-            } else {
-                return 0;
-            }
+            return this.getFirstName().compareToIgnoreCase(c.getFirstName());
         } else {
-            if (this.getLastName().compareToIgnoreCase(c.getLastName()) < 0) {
-                return -1;
-            } else { // this.lastname comes after o.lastname
-                return 1;
-            }
+            return this.getLastName().compareToIgnoreCase(c.getLastName());
         }
     }
     
+    /* (non-Javadoc)
+     * @see java.lang.Object#hashCode()
+     */
     @Override
-    public boolean equals(Object o) {
-        Customer c = (Customer) o;
-        if (first_name.equals(c.getFirstName()) && last_name.equals(c.getLastName())) {
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((first_name == null) ? 0 : first_name.hashCode());
+        result = prime * result + ((last_name == null) ? 0 : last_name.hashCode());
+        return result;
+    }
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
             return true;
-        } else {
+        if (obj == null)
             return false;
-        }
+        if (getClass() != obj.getClass())
+            return false;
+        Customer other = (Customer) obj;
+        if (first_name == null) {
+            if (other.first_name != null)
+                return false;
+        } else if (!first_name.equals(other.first_name))
+            return false;
+        if (last_name == null) {
+            if (other.last_name != null)
+                return false;
+        } else if (!last_name.equals(other.last_name))
+            return false;
+        return true;
     }
     
 }

@@ -32,7 +32,7 @@ public class AirlineFileReaderTest {
         try {
             actual = AirlineFileReader.readfile(filename);
             assertEquals("DELTA", actual.get(0).getCallsign());
-            assertEquals("B6", actual.get(1).getAirline_code());
+            assertEquals("B6", actual.get(1).getAirlineCode());
             assertEquals("United Airlines", actual.get(2).getDescription());
             assertEquals("United States", actual.get(2).getCountry());
         } catch (FileNotFoundException e) {

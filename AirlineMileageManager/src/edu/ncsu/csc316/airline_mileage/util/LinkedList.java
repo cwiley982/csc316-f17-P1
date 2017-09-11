@@ -28,7 +28,7 @@ public class LinkedList<E extends Comparable<E>> {
             throw new IllegalArgumentException();
         }
         
-        if (front == null || element.compareTo((E) front.value) == -1) {
+        if (front == null || element.compareTo((E) front.value) < 0) {
             // element comes before current, add to front
             front = new Node<E>(element, front);
             size++;
@@ -38,11 +38,11 @@ public class LinkedList<E extends Comparable<E>> {
         Node<E> current = front;
         boolean cont = true;
         while (cont) {
-            if (current.next == null || element.compareTo((E) current.next.value) == -1) {
+            if (current.next == null || element.compareTo((E) current.next.value) < 0) {
                 // next value is null, element has to be next OR
                 // element comes before next but after current, stop traversing
                 cont = false;
-            } else if (element.compareTo((E) current.next.value) == 1) {
+            } else if (element.compareTo((E) current.next.value) > 0) {
                 // element comes after next node, keep traversing list
                 current = current.next;
             }

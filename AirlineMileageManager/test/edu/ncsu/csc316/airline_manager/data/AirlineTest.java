@@ -1,6 +1,7 @@
 package edu.ncsu.csc316.airline_manager.data;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -12,8 +13,8 @@ public class AirlineTest {
     public void testCompareTo() {
         Airline a1 = new Airline("United Airlines", "UA", "UNITED", "United States");
         Airline a2 = new Airline("American Airlines", "AA", "AMERICAN", "United States");
-        assertEquals(-1, a2.compareTo(a1));
-        assertEquals(1, a1.compareTo(a2));
+        assertTrue(a2.compareTo(a1) < 0);
+        assertTrue(a1.compareTo(a2) > 0);
         assertEquals(0, a1.compareTo(a1));
     }
     

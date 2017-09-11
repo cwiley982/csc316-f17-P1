@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import org.junit.Test;
@@ -68,12 +69,12 @@ public class CustomerTest {
     @Test
     public void testCompareTo() {
         Customer c2 = new Customer("Courtney", "Wiley");
-        assertEquals(-1, customer.compareTo(c2));
+        assertTrue(customer.compareTo(c2) < 0);
         Customer c3 = new Customer("Juanita", "Thompson");
-        assertEquals(1, customer.compareTo(c3));
+        assertTrue(customer.compareTo(c3) > 0);
         Customer c4 = new Customer("Juanita", "Massey");
-        assertEquals(-1, c4.compareTo(c3));
-        assertEquals(1, c2.compareTo(customer));
+        assertTrue(c4.compareTo(c3) < 0);
+        assertTrue(c2.compareTo(customer) > 0);
         assertEquals(0, c2.compareTo(c2));
     }
     
