@@ -82,7 +82,7 @@ public class AirlineMileageManager {
                 return customers.get(i).getMileageReport();
             }
         }
-        return null;
+        return firstName + " " + lastName + " earned no miles.";
     }
     
 

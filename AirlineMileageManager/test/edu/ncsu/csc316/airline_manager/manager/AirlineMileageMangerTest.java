@@ -12,8 +12,8 @@ public class AirlineMileageMangerTest {
     private String airlineFile = "input/airline_file";
     private String flightFile = "input/flight_file";
     private String customerFile = "input/customer_file";
-    private String erickMcfarlandReport = "Erick Mcfarland earned\n\t3591 miles with United Airlines (UA)\n\t516 miles with Delta Air Lines (DL)\n\t319 miles with JetBlue Airways (B6)";
-    private String kassandraStiltnerReport = "Kassandra Stiltner earned\n\t5985 miles with United Airlines (UA)";
+    private String erickMcfarlandReport = "Erick Mcfarland earned\n    3591 miles with United Airlines (UA)\n    516 miles with Delta Air Lines (DL)\n    319 miles with JetBlue Airways (B6)";
+    private String kassandraStiltnerReport = "Kassandra Stiltner earned\n    5985 miles with United Airlines (UA)";
     private String fullReport = erickMcfarlandReport + "\n\n" + kassandraStiltnerReport;
     
     @Test

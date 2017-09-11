@@ -123,7 +123,7 @@ public class Miles {
         sort();
         String milesReport = "";
         for (int i = 0; i < rows; i++) {
-            milesReport += "\n\t" + mileage[i][0] + " miles with " + mileage[i][1] + " "
+            milesReport += "\n    " + mileage[i][0] + " miles with " + mileage[i][1] + " "
                     + mileage[i][2];
         }
         return milesReport;
