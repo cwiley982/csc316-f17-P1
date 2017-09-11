@@ -79,14 +79,40 @@ public class AirlineMileageManager {
      */
     public String getMiles(String firstName, String lastName) {
         // find customer with matching first and last name, print their report
-        Customer c = new Customer(firstName, lastName);
-        for (int i = 0; i < customers.size(); i++) {
-            if (customers.get(i).equals(c)) {
-                return customers.get(i).getMileageReport();
-            }
+        Customer c = getCustomer(firstName, lastName);
+        if (c != null) {
+            return c.getMileageReport();
+        } else {
+            return firstName + " " + lastName + " earned\n    no miles.";
         }
-        return firstName + " " + lastName + " earned\n    no miles.";
     }
     
+    private Customer getCustomer(String first, String last) {
+        Customer c = new Customer(first, last);
+        int index = binarySearch(0, customers.size() - 1, c);
+        if (index == -1) {
+            return null;
+        } else {
+            return customers.get(index);
+        }
+    }
+    
+    private int binarySearch(int min, int max, Customer c) {
+        // recursive call
+        if (min > max) { // entire list was searched through, customer not found
+            return -1;
+        }
+        int mid = ((max - min) / 2) + min;
+        if (c.compareTo(customers.get(mid)) == 0) {
+            return mid;
+        }
+        if (c.compareTo(customers.get(mid)) < 0) {
+            // c comes before mid, search left half
+            return binarySearch(0, mid - 1, c);
+        } else {
+            // c comes after mid, search right half
+            return binarySearch(mid + 1, max, c);
+        }
+    }
 
 }
