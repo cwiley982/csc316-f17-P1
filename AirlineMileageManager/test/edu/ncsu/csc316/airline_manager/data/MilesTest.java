@@ -16,9 +16,13 @@ public class MilesTest {
         miles.addMiles("Delta Air Lines", "DL", 3000);
         String report = miles.getMilesReport();
         String expected = "\n\t3000 miles with Delta Air Lines (DL)\n\t1234 miles with American Airlines (AA)\n\t1234 miles with United Airlines (UA)";
-        System.out.println(report);
+        // System.out.println(report);
         assertEquals(expected, report);
-        
+        miles.addMiles("Caitlyn's Airways", "CA", 1234);
+        report = miles.getMilesReport();
+        expected = "\n\t3000 miles with Delta Air Lines (DL)\n\t1234 miles with American Airlines (AA)\n\t1234 miles with Caitlyn's Airways (CA)\n\t1234 miles with United Airlines (UA)";
+        // System.out.println(report);
+        assertEquals(expected, report);
     }
     
 }

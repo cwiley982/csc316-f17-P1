@@ -5,6 +5,7 @@ public class Miles {
     private Object[][] mileage;
     private Object[][] tempArray;
     private static final int INIT_SIZE = 10;
+    private static final int RESIZE = 2;
     private int rows;
     
     public Miles() {
@@ -22,6 +23,9 @@ public class Miles {
             }
         }
         if (!airlineExists) {
+            if (rows >= mileage.length) {
+                growArray();
+            }
             mileage[rows][0] = miles;
             mileage[rows][1] = airline;
             mileage[rows][2] = "(" + airline_code + ")";
@@ -29,14 +33,15 @@ public class Miles {
         }
     }
     
-    public void sort() {
-        
-        /*
-         * for (int i = 0; i < rows; i++) { for (int j = i; j > 0; j--) { if
-         * ((Integer) mileage[j][0] > (Integer) mileage[j - 1][0]) { Object[]
-         * temp = mileage[j - 1]; mileage[j - 1] = mileage[j]; mileage[j] =
-         * temp; } } }
-         */
+    private void growArray() {
+        Object[][] temp = new Object[mileage.length * RESIZE][3];
+        for (int i = 0; i < mileage.length; i++) {
+            temp[i] = mileage[i];
+        }
+        mileage = temp;
+    }
+    
+    private void sort() {
         Object[][] temp = new Object[rows][3];
         int i = 0;
         while (i < rows) {
@@ -47,7 +52,7 @@ public class Miles {
         mileage = mergeSort(temp);
     }
     
-    public Object[][] mergeSort(Object[][] array) {
+    private Object[][] mergeSort(Object[][] array) {
         if (array.length == 1) {
             return array;
         }
@@ -71,7 +76,7 @@ public class Miles {
         return mergeParts(left, right);
     }
     
-    public Object[][] mergeParts(Object[][] left, Object[][] right) {
+    private Object[][] mergeParts(Object[][] left, Object[][] right) {
         tempArray = new Object[left.length + right.length][3];
         int leftIndex = 0;
         int rightIndex = 0;

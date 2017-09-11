@@ -59,8 +59,7 @@ public class Customer implements Comparable<Customer> {
     }
     
     @Override
-    public int compareTo(Customer o) {
-        Customer c = (Customer) o;
+    public int compareTo(Customer c) {
         // sort by last name, then first
         if (this.getLastName().compareToIgnoreCase(c.getLastName()) == 0) {
             // last names are the same, compare first names
@@ -74,10 +73,8 @@ public class Customer implements Comparable<Customer> {
         } else {
             if (this.getLastName().compareToIgnoreCase(c.getLastName()) < 0) {
                 return -1;
-            } else if (this.getLastName().compareToIgnoreCase(c.getLastName()) > 0) {
+            } else { // this.lastname comes after o.lastname
                 return 1;
-            } else {
-                return 0;
             }
         }
     }

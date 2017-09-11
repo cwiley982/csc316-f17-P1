@@ -1,5 +1,6 @@
 package edu.ncsu.csc316.airline_mileage.manager;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
@@ -83,21 +84,52 @@ public class AirlineMileageManager {
         return null;
     }
     
-    public void main(String[] args) {
+    public static void main(String[] args) {
         System.out.println(
-                "Welcome to AirlineMileageManager! To get started, please enter the airline information filename: ");
+                "Welcome to AirlineMileageManager! To get started, please enter the airline "
+                        + "filename: ");
         Scanner in = new Scanner(System.in);
         String airline_filename = in.next();
-        System.out.println("Please enter the flight information filename: ");
+        Scanner fakeScanner = null;
+        while (fakeScanner == null) {
+            try {
+                fakeScanner = new Scanner(new File(airline_filename));
+            } catch (FileNotFoundException e) {
+                System.out.println("Invalid airline filename. Please try again."
+                        + "\nEnter the airline filename: ");
+                airline_filename = in.next();
+            }
+        }
+        System.out.println("Please enter the flight filename: ");
         String flight_filename = in.next();
-        System.out.println("Please enter the customer information filename: ");
+        fakeScanner = null;
+        while (fakeScanner == null) {
+            try {
+                fakeScanner = new Scanner(new File(airline_filename));
+            } catch (FileNotFoundException e) {
+                System.out.println(
+                        "Invalid flight filename. Please try again.\nEnter the flight filename: ");
+                airline_filename = in.next();
+            }
+        }
+        System.out.println("Please enter the customer filename: ");
         String customer_filename = in.next();
-        AirlineMileageManager manager;
-        
-        manager = new AirlineMileageManager(airline_filename,
+        fakeScanner = null;
+        while (fakeScanner == null) {
+            try {
+                fakeScanner = new Scanner(new File(airline_filename));
+            } catch (FileNotFoundException e) {
+                System.out.println(
+                        "Invalid customer filename. Please try again.\nEnter the customer "
+                                + "filename: ");
+                airline_filename = in.next();
+            }
+        }
+        AirlineMileageManager manager = new AirlineMileageManager(airline_filename,
                 customer_filename, flight_filename);
         System.out.println(
-                "Would you like to query a customer (Q), print a mileage report (R), or exit the program (E)? ");
+                "Would you like to query a customer (Q), print a mileage report (R), "
+                        + "or exit the program (E)? ");
         String command = in.next();
         while (!command.equalsIgnoreCase("E")) {
             // handle user requests
@@ -115,7 +147,8 @@ public class AirlineMileageManager {
                 System.out.println("Invalid command. Please try again.");
             }
             System.out.println(
-                    "Would you like to query a customer (Q), print a mileage report (R), or exit the program (E)? ");
+                    "Would you like to query a customer (Q), print a mileage report (R), "
+                            + "or exit the program (E)? ");
             command = in.next();
         }
         System.out.println("Thank you for using AirlineMileageManager!");
