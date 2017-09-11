@@ -17,6 +17,8 @@ public class FlightFileReaderTest {
     private LinkedList<Flight> flights;
     private String[][] airlineArray;
     private LinkedList<Flight> actual;
+    private AirlineFileReader airlineReader = new AirlineFileReader();
+    private FlightFileReader flightReader = new FlightFileReader();
     
     @Before
     public void setUp() throws Exception {
@@ -30,14 +32,14 @@ public class FlightFileReaderTest {
         flights.add(united); // third
         flights.add(delta); // second
         flights.add(jetblue); // first
-        LinkedList<Airline> airlines = AirlineFileReader.readfile("input/airline_file");
-        airlineArray = AirlineFileReader.get2DArray(airlines);
+        LinkedList<Airline> airlines = airlineReader.readfile("input/airline_file");
+        airlineArray = airlineReader.get2DArray(airlines);
     }
     
     @Test
     public void test() {
         try {
-            actual = FlightFileReader.readfile("input/flight_file", airlineArray);
+            actual = flightReader.readfile("input/flight_file", airlineArray);
             assertEquals("B6", actual.get(0).getAirlineCode());
             assertEquals("ATL", actual.get(1).getOrigin());
             assertEquals(-20, actual.get(2).getArrivalDelay());

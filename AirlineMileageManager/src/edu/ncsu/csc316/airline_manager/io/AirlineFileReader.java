@@ -9,7 +9,7 @@ import edu.ncsu.csc316.airline_mileage.util.LinkedList;
 
 public class AirlineFileReader {
     
-    public static LinkedList<Airline> readfile(String filename) throws FileNotFoundException {
+    public LinkedList<Airline> readfile(String filename) throws FileNotFoundException {
         LinkedList<Airline> airlines = new LinkedList<Airline>();
         Scanner scan = new Scanner(new File(filename));
         scan.nextLine(); // skips first line that describes each column
@@ -28,7 +28,7 @@ public class AirlineFileReader {
         return airlines;
     }
     
-    public static String[][] get2DArray(LinkedList<Airline> airlines) {
+    public String[][] get2DArray(LinkedList<Airline> airlines) {
         String[][] array = new String[airlines.size()][2];
         for (int i = 0; i < airlines.size(); i++) {
             array[i][0] = airlines.get(i).getAirlineCode();

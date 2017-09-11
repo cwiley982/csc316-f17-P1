@@ -20,6 +20,9 @@ public class AirlineMileageManager {
     private LinkedList<Flight> flights;
     /** Holds a list of all airlines from file specified by user */
     private LinkedList<Airline> airlines;
+    private AirlineFileReader airlineReader = new AirlineFileReader();
+    private FlightFileReader flightReader = new FlightFileReader();
+    private CustomerFileReader customerReader = new CustomerFileReader();
     private String[][] airlineCodesAndNames;
     
     /**
@@ -35,11 +38,11 @@ public class AirlineMileageManager {
     public AirlineMileageManager(String pathToAirlineFile, String pathToCustomerFile,
             String pathToFlightFile) {
         try {
-            airlines = AirlineFileReader.readfile(pathToAirlineFile);
-            airlineCodesAndNames = AirlineFileReader.get2DArray(airlines);
+            airlines = airlineReader.readfile(pathToAirlineFile);
+            airlineCodesAndNames = airlineReader.get2DArray(airlines);
             
-            flights = FlightFileReader.readfile(pathToFlightFile, airlineCodesAndNames);
-            customers = CustomerFileReader.readfile(pathToCustomerFile, flights);
+            flights = flightReader.readfile(pathToFlightFile, airlineCodesAndNames);
+            customers = customerReader.readfile(pathToCustomerFile, flights);
         } catch (FileNotFoundException e) {
             // TODO
         }

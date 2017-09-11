@@ -87,5 +87,11 @@ public class CustomerTest {
         assertFalse(c2.equals(c3));
         assertFalse(c4.equals(c3));
     }
+    
+    @Test
+    public void testHashCode() {
+        Customer c = new Customer("Caitlyn", "Wiley");
+        assertTrue(c.hashCode() < 0);
+    }
 
 }

@@ -19,7 +19,7 @@ public class CustomerFileReader {
      * have access to the flight objects already created when reading in the
      * flight file.
      */
-    public static LinkedList<Customer> readfile(String filename, LinkedList<Flight> flights)
+    public LinkedList<Customer> readfile(String filename, LinkedList<Flight> flights)
             throws FileNotFoundException {
         LinkedList<Customer> customers = new LinkedList<Customer>();
         Scanner scan = new Scanner(new File(filename));

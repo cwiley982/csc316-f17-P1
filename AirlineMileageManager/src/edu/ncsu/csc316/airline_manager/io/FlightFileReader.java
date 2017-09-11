@@ -10,7 +10,7 @@ import edu.ncsu.csc316.airline_mileage.util.LinkedList;
 
 public class FlightFileReader {
     
-    public static LinkedList<Flight> readfile(String filename, String[][] airlineArray)
+    public LinkedList<Flight> readfile(String filename, String[][] airlineArray)
             throws FileNotFoundException {
         LinkedList<Flight> flights = new LinkedList<Flight>();
         Scanner scan = new Scanner(new File(filename));

@@ -21,15 +21,18 @@ public class CustomerFileReaderTest {
     private LinkedList<Customer> actual;
     private Customer c1 = new Customer("Erick", "Mcfarland");
     private Customer c2 = new Customer("Kassandra", "Stiltner");
+    private AirlineFileReader airlineReader = new AirlineFileReader();
+    private FlightFileReader flightReader = new FlightFileReader();
+    private CustomerFileReader customerReader = new CustomerFileReader();
     
     @Before
     public void setUp() {
         customers.add(c1);
         customers.add(c2);
         try {
-            LinkedList<Airline> airlines = AirlineFileReader.readfile("input/airline_file");
-            String[][] airlineArray = AirlineFileReader.get2DArray(airlines);
-            flights = FlightFileReader.readfile("input/flight_file", airlineArray);
+            LinkedList<Airline> airlines = airlineReader.readfile("input/airline_file");
+            String[][] airlineArray = airlineReader.get2DArray(airlines);
+            flights = flightReader.readfile("input/flight_file", airlineArray);
         } catch (FileNotFoundException e) {
             fail();
         }
@@ -38,7 +41,7 @@ public class CustomerFileReaderTest {
     @Test
     public void testFileReader() {
         try {
-            actual = CustomerFileReader.readfile(filename, flights);
+            actual = customerReader.readfile(filename, flights);
             assertEquals("Mcfarland", actual.get(0).getLastName());
             assertEquals("Kassandra", actual.get(1).getFirstName());
             assertEquals(2, actual.size());

@@ -19,6 +19,7 @@ public class AirlineFileReaderTest {
     private Airline united = new Airline("United Airlines", "UA", "UNITED", "United States");
     private Airline delta = new Airline("Delta Air Lines", "DL", "DELTA", "United States");
     private Airline jetblue = new Airline("JetBlue Airways", "B6", "JETBLUE", "United States");
+    private AirlineFileReader airlineReader = new AirlineFileReader();
     
     @Before
     public void setUp() {
@@ -30,7 +31,7 @@ public class AirlineFileReaderTest {
     @Test
     public void testFileReader() {
         try {
-            actual = AirlineFileReader.readfile(filename);
+            actual = airlineReader.readfile(filename);
             assertEquals("DELTA", actual.get(0).getCallsign());
             assertEquals("B6", actual.get(1).getAirlineCode());
             assertEquals("United Airlines", actual.get(2).getDescription());
