@@ -144,17 +144,6 @@ public class LinkedList<E extends Comparable<E>> {
         return (E) current.value;
     }
     
-    public Node<E> getNodeAt(int index) {
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException();
-        }
-        Node<E> current = front;
-        for (int i = 0; i < index; i++) {
-            current = current.next;
-        }
-        return current;
-    }
-    
     public int size() {
         return size;
     }
