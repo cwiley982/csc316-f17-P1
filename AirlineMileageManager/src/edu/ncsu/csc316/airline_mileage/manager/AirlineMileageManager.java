@@ -85,7 +85,7 @@ public class AirlineMileageManager {
                 return customers.get(i).getMileageReport();
             }
         }
-        return firstName + " " + lastName + " earned\n no miles.";
+        return firstName + " " + lastName + " earned\n    no miles.";
     }
     
 
