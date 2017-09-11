@@ -39,7 +39,7 @@ public class Miles {
          */
         Object[][] temp = new Object[rows][3];
         int i = 0;
-        while (mileage[i][0] != null) {
+        while (i < rows) {
             temp[i] = mileage[i];
             i++;
         }
