@@ -40,6 +40,7 @@ public class FlightFileReaderTest {
     public void test() {
         try {
             actual = flightReader.readfile("input/flight_file", airlineArray);
+            actual.sort();
             assertEquals("B6", actual.get(0).getAirlineCode());
             assertEquals("ATL", actual.get(1).getOrigin());
             assertEquals(-20, actual.get(2).getArrivalDelay());

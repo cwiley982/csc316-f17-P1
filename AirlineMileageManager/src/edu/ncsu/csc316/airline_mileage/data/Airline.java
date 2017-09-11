@@ -79,7 +79,7 @@ public class Airline implements Comparable<Airline> {
         // cast to airline
         Airline a = (Airline) o;
         // sort by description (airline name)
-        return description.compareTo(a.getDescription());
+        return airline_code.compareTo(a.getAirlineCode());
     }
     
 }

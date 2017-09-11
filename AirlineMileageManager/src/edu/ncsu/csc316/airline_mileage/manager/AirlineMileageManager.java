@@ -37,10 +37,13 @@ public class AirlineMileageManager {
             String pathToFlightFile) {
         try {
             airlines = airlineReader.readfile(pathToAirlineFile);
+            airlines.sort();
             airlineCodesAndNames = airlineReader.get2DArray(airlines);
             
             flights = flightReader.readfile(pathToFlightFile, airlineCodesAndNames);
+            flights.sort();
             customers = customerReader.readfile(pathToCustomerFile, flights);
+            customers.sort();
         } catch (FileNotFoundException e) {
             // TODO
         }
