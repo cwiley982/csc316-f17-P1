@@ -21,7 +21,6 @@ public class CustomerFileReaderTest {
     private LinkedList<Customer> actual;
     private Customer c1 = new Customer("Erick", "Mcfarland");
     private Customer c2 = new Customer("Kassandra", "Stiltner");
-    private Customer c3 = new Customer("Caitlyn", "Wiley");
     
     @Before
     public void setUp() {
