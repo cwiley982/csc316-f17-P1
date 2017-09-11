@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 import edu.ncsu.csc316.airline_mileage.manager.AirlineMileageManager;
 
-public class Console {
+public class AirlineMileageManagerUI {
     public static void main(String[] args) {
         System.out.println(
                 "Welcome to AirlineMileageManager! To get started, please enter the airline "
