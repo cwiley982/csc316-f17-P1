@@ -8,7 +8,7 @@ import edu.ncsu.csc316.airline_manager.io.FlightFileReader;
 import edu.ncsu.csc316.airline_mileage.data.Airline;
 import edu.ncsu.csc316.airline_mileage.data.Customer;
 import edu.ncsu.csc316.airline_mileage.data.Flight;
-import edu.ncsu.csc316.airline_mileage.util.LinkedList;
+import edu.ncsu.csc316.airline_mileage.util.ArrayList;
 
 /**
  * This is the main class that reads in the input files and gets the miles for
@@ -21,11 +21,11 @@ import edu.ncsu.csc316.airline_mileage.util.LinkedList;
 public class AirlineMileageManager {
     
     /** Holds a list of all customers from file specified by user */
-    private LinkedList<Customer> customers;
+    private ArrayList<Customer> customers;
     /** Holds a list of all flights from file specified by user */
-    private LinkedList<Flight> flights;
+    private ArrayList<Flight> flights;
     /** Holds a list of all airlines from file specified by user */
-    private LinkedList<Airline> airlines;
+    private ArrayList<Airline> airlines;
     /** Creates and AirlineFileReader object to read in the airline file */
     private AirlineFileReader airlineReader = new AirlineFileReader();
     /** Creates a FlightFileReader object to read in the flight file */

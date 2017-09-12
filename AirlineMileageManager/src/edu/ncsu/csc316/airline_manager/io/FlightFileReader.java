@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import edu.ncsu.csc316.airline_mileage.data.Flight;
-import edu.ncsu.csc316.airline_mileage.util.LinkedList;
+import edu.ncsu.csc316.airline_mileage.util.ArrayList;
 
 /**
  * This class is responsible for reading in a flight file and creating a linked
@@ -28,9 +28,9 @@ public class FlightFileReader {
      * @throws FileNotFoundException
      *             if the file cannot be found and read from
      */
-    public LinkedList<Flight> readfile(String filename, String[][] airlineArray)
+    public ArrayList<Flight> readfile(String filename, String[][] airlineArray)
             throws FileNotFoundException {
-        LinkedList<Flight> flights = new LinkedList<Flight>();
+        ArrayList<Flight> flights = new ArrayList<Flight>();
         Scanner scan = new Scanner(new File(filename));
         scan.nextLine(); // skips first line that describes each column
         while (scan.hasNextLine()) {
@@ -49,9 +49,10 @@ public class FlightFileReader {
             lineScan.nextInt(); // skips over actual departure
             int distance = lineScan.nextInt();
             String airline = getAirline(airlineCode, airlineArray);
-            flights.add(new Flight(airlineCode, airline, flightNumber, origin, dest,
-                    distance));
-            flights.sort();
+            Flight f = new Flight(airlineCode, flightNumber, origin, dest);
+            f.setDistance(distance);
+            f.setAirline(airline);
+            flights.add(f);
             lineScan.close();
         }
         scan.close();

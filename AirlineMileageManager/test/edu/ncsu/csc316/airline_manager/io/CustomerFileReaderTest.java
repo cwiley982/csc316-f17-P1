@@ -11,7 +11,7 @@ import org.junit.Test;
 import edu.ncsu.csc316.airline_mileage.data.Airline;
 import edu.ncsu.csc316.airline_mileage.data.Customer;
 import edu.ncsu.csc316.airline_mileage.data.Flight;
-import edu.ncsu.csc316.airline_mileage.util.LinkedList;
+import edu.ncsu.csc316.airline_mileage.util.ArrayList;
 
 /**
  * Tests CustomerFileReader functionality
@@ -22,9 +22,9 @@ import edu.ncsu.csc316.airline_mileage.util.LinkedList;
 public class CustomerFileReaderTest {
     
     private String filename = "input/customer_file";
-    private LinkedList<Customer> customers = new LinkedList<Customer>();
-    private LinkedList<Flight> flights;
-    private LinkedList<Customer> actual;
+    private ArrayList<Customer> customers = new ArrayList<Customer>();
+    private ArrayList<Flight> flights;
+    private ArrayList<Customer> actual;
     private Customer c1 = new Customer("Erick", "Mcfarland");
     private Customer c2 = new Customer("Kassandra", "Stiltner");
     private AirlineFileReader airlineReader = new AirlineFileReader();
@@ -39,7 +39,7 @@ public class CustomerFileReaderTest {
         customers.add(c1);
         customers.add(c2);
         try {
-            LinkedList<Airline> airlines = airlineReader.readfile("input/airline_file");
+            ArrayList<Airline> airlines = airlineReader.readfile("input/airline_file");
             String[][] airlineArray = airlineReader.get2DArray(airlines);
             flights = flightReader.readfile("input/flight_file", airlineArray);
             flights.sort();

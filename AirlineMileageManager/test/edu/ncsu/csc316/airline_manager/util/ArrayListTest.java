@@ -1,6 +1,7 @@
 package edu.ncsu.csc316.airline_manager.util;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.io.FileNotFoundException;
 
@@ -9,22 +10,22 @@ import org.junit.Test;
 
 import edu.ncsu.csc316.airline_manager.io.AirlineFileReader;
 import edu.ncsu.csc316.airline_mileage.data.Airline;
-import edu.ncsu.csc316.airline_mileage.util.LinkedList;
+import edu.ncsu.csc316.airline_mileage.util.ArrayList;
 
 /**
- * Tests LinkedList functionality
+ * Tests ArrayList functionality
  * 
  * @author Caitlyn Wiley
  *
  */
-public class LinkedListTest {
+public class ArrayListTest {
     
     private String firstExpectedAirlineCode = "B6";
     private String secondExpectedAirlineCode = "CA";
     private String thirdExpectedDescription = "Delta Air Lines";
     private String airlineFilename = "input/airline_file";
     private AirlineFileReader airlineReader = new AirlineFileReader();
-    private LinkedList<Airline> airlines;
+    private ArrayList<Airline> airlines;
     
     /**
      * creates linked list of airlines to be tested later
@@ -34,7 +35,7 @@ public class LinkedListTest {
         try {
             airlines = airlineReader.readfile(airlineFilename);
         } catch (FileNotFoundException e) {
-            // do nothing
+            fail();
         }
     }
     

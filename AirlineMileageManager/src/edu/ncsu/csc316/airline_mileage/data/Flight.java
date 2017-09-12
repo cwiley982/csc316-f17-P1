@@ -27,25 +27,19 @@ public class Flight implements Comparable<Flight> {
      * 
      * @param airlineCode
      *            airline code of the flight
-     * @param airline
-     *            full name of the airline the flight is with
      * @param flightNumber
      *            number of the flight
      * @param origin
      *            where the flight started
      * @param dest
      *            where the flight ended
-     * @param dist
-     *            how far the flight went
      */
-    public Flight(String airlineCode, String airline, int flightNumber,
-            String origin, String dest, int dist) {
+    public Flight(String airlineCode, int flightNumber,
+            String origin, String dest) {
         setAirlineCode(airlineCode);
-        setAirline(airline);
         setFlightNumber(flightNumber);
         setOrigin(origin);
         setDestination(dest);
-        setDistance(dist);
     }
     
     /**
@@ -139,7 +133,7 @@ public class Flight implements Comparable<Flight> {
      * @param distance
      *            the distance the flight flew
      */
-    private void setDistance(int distance) {
+    public void setDistance(int distance) {
         this.distance = distance;
     }
     

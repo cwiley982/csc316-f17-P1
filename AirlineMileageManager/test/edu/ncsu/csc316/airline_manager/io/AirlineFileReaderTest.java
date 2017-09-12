@@ -8,7 +8,7 @@ import java.io.FileNotFoundException;
 import org.junit.Test;
 
 import edu.ncsu.csc316.airline_mileage.data.Airline;
-import edu.ncsu.csc316.airline_mileage.util.LinkedList;
+import edu.ncsu.csc316.airline_mileage.util.ArrayList;
 
 /**
  * Tests AirlineFileReader functionality
@@ -19,7 +19,7 @@ import edu.ncsu.csc316.airline_mileage.util.LinkedList;
 public class AirlineFileReaderTest {
     
     private String filename = "input/airline_file";
-    private LinkedList<Airline> actual;
+    private ArrayList<Airline> actual;
     private AirlineFileReader airlineReader = new AirlineFileReader();
     
     /**

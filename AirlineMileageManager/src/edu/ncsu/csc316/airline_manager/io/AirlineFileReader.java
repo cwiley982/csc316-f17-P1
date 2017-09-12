@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import edu.ncsu.csc316.airline_mileage.data.Airline;
-import edu.ncsu.csc316.airline_mileage.util.LinkedList;
+import edu.ncsu.csc316.airline_mileage.util.ArrayList;
 
 /**
  * This class is able to read in an airline file and return a linked list of
@@ -26,8 +26,8 @@ public class AirlineFileReader {
      * @throws FileNotFoundException
      *             if the file can't be found and read from
      */
-    public LinkedList<Airline> readfile(String filename) throws FileNotFoundException {
-        LinkedList<Airline> airlines = new LinkedList<Airline>();
+    public ArrayList<Airline> readfile(String filename) throws FileNotFoundException {
+        ArrayList<Airline> airlines = new ArrayList<Airline>();
         Scanner scan = new Scanner(new File(filename));
         scan.nextLine(); // skips first line that describes each column
         Scanner lineScan;
@@ -39,7 +39,6 @@ public class AirlineFileReader {
             String airlineCode = lineScan.next();
             lineScan.close();
             airlines.add(new Airline(description, airlineCode));
-            airlines.sort();
         }
         scan.close();
         return airlines;
@@ -52,7 +51,7 @@ public class AirlineFileReader {
      *            the linked list of airlines to get info from
      * @return 2D array containing airline codes and descriptions
      */
-    public String[][] get2DArray(LinkedList<Airline> airlines) {
+    public String[][] get2DArray(ArrayList<Airline> airlines) {
         String[][] array = new String[airlines.size()][2];
         for (int i = 0; i < airlines.size(); i++) {
             array[i][0] = airlines.get(i).getAirlineCode();
