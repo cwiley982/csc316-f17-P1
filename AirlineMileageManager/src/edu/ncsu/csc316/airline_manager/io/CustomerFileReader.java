@@ -39,11 +39,14 @@ public class CustomerFileReader {
             String dest = lineScan.next();
             lineScan.close();
             
+            String airlineCode = flight.substring(0, 2);
+            int flightNumber = Integer.parseInt(flight.substring(2));
+            
             Customer x = new Customer(first, last);
             try {
                 customers.add(x);
                 customers.sort(); // sorting after adding to make contains more
-                                  // efficient, but still using merge sort
+                // efficient, but still using merge sort
             } catch (IllegalArgumentException e) {
                 // customer exists, get original customer object
                 x = customers.get(customers.binarySearch(0, customers.size() - 1, x));
@@ -53,15 +56,17 @@ public class CustomerFileReader {
                 // }
                 // }
             }
-            x.addFlight(findMatch(flight, origin, dest));
+            x.addFlight(findMatch(airlineCode, flightNumber, origin, dest));
         }
         scan.close();
         return customers;
     }
     
-    private Flight findMatch(String flightString, String origin, String destination) {
+    private Flight findMatch(String airlineCode, int flightNumber, String origin,
+            String destination) {
         // find matching flight, use binary search
-        int index = binarySearch(0, flights.size() - 1, flightString, origin, destination);
+        int index = binarySearch(0, flights.size() - 1, airlineCode, flightNumber, origin,
+                destination);
         if (index != -1) {
             return flights.get(index);
         } else {
@@ -69,7 +74,7 @@ public class CustomerFileReader {
         }
     }
     
-    private int binarySearch(int min, int max, String flightString, String origin,
+    private int binarySearch(int min, int max, String airlineCode, int flightNumber, String origin,
             String destination) {
         // recursive call
         if (min > max) { // entire list was searched through, flight not found
@@ -77,27 +82,37 @@ public class CustomerFileReader {
         }
         int mid = ((max - min) / 2) + min;
         Flight midFlight = flights.get(mid);
-        if (flightString.compareTo(midFlight.getFlightString()) == 0) {
-            if (origin.compareTo(midFlight.getOrigin()) == 0) {
-                if (destination.compareTo(midFlight.getDestination()) == 0) {
-                    return mid;
-                } else if (destination.compareTo(midFlight.getDestination()) < 0) {
-                    // dest comes before midFlight, check left half
-                    return binarySearch(min, mid - 1, flightString, origin, destination);
+        if (airlineCode.compareTo(midFlight.getAirlineCode()) == 0) {
+            if (flightNumber == midFlight.getFlightNumber()) {
+                if (origin.compareTo(midFlight.getOrigin()) == 0) {
+                    if (destination.compareTo(midFlight.getDestination()) == 0) {
+                        return mid;
+                    } else if (destination.compareTo(midFlight.getDestination()) < 0) {
+                        // dest comes before midFlight, check left half
+                        return binarySearch(min, mid - 1, airlineCode, flightNumber, origin,
+                                destination);
+                    } else {
+                        return binarySearch(mid + 1, max, airlineCode, flightNumber, origin,
+                                destination);
+                    }
+                } else if (origin.compareTo(midFlight.getOrigin()) < 0) {
+                    // look in left
+                    return binarySearch(0, mid - 1, airlineCode, flightNumber, origin, destination);
                 } else {
-                    return binarySearch(mid + 1, max, flightString, origin, destination);
+                    // look in right
+                    return binarySearch(mid + 1, max, airlineCode, flightNumber, origin,
+                            destination);
                 }
-            } else if (origin.compareTo(midFlight.getOrigin()) < 0) {
-                // look in left
-                return binarySearch(0, mid - 1, flightString, origin, destination);
+            } else if (flightNumber < midFlight.getFlightNumber()) {
+                return binarySearch(0, mid - 1, airlineCode, flightNumber, origin, destination);
             } else {
-                // look in right
-                return binarySearch(mid + 1, max, flightString, origin, destination);
+                return binarySearch(mid + 1, max, airlineCode, flightNumber, origin, destination);
             }
-        } else if (flightString.compareTo(midFlight.getFlightString()) < 0) {
-            return binarySearch(0, mid - 1, flightString, origin, destination);
+        } else if (airlineCode.compareTo(midFlight.getAirlineCode()) < 0) {
+            return binarySearch(min, mid - 1, airlineCode, flightNumber, origin, destination);
         } else {
-            return binarySearch(mid + 1, max, flightString, origin, destination);
+            return binarySearch(mid + 1, max, airlineCode, flightNumber, origin, destination);
         }
     }
+    
 }
