@@ -30,28 +30,15 @@ public class LinkedList<E extends Comparable<E>> {
         front = new Node<E>(element, front);
         size++;
         return true;
-        /*if (front == null) {
-            front = new Node<E>(element, null);
-            size++;
-            return true;
-        } else {
-            Node<E> current = front;
-            while (current.next != null) {
-                current = current.next;
-            }
-            current.next = new Node<E>(element, null);
-            size++;
-            return true;
-        }*/
     }
     
     public void sort() {
-        front = mergeSort(this).front;
+        front = mergeSort(this);
     }
     
-    public LinkedList<E> mergeSort(LinkedList<E> list) {
+    public Node<E> mergeSort(LinkedList<E> list) {
         if (list.size() == 1) {
-            return list;
+            return list.front;
         } else {
             // split into left and right, maybe use an iterator
             LinkedList<E> left = new LinkedList<E>();
@@ -71,10 +58,30 @@ public class LinkedList<E extends Comparable<E>> {
                 index++;
             }
             
-            left = mergeSort(left);
-            right = mergeSort(right);
-            return mergeParts(left, right);
+            left.front = mergeSort(left);
+            right.front = mergeSort(right);
+            // return mergeParts(left, right);
+            return mergeParts(left.front, right.front);
         }
+    }
+    
+    public Node<E> mergeParts(Node<E> left, Node<E> right) {
+        Node<E> temp = new Node<E>();
+        Node<E> head = temp;
+        Node<E> x = head;
+        while ((left != null) && (right != null)) { // both aren't "empty"
+            if (left.value.compareTo(right.value) < 0) {
+                x.next = left;
+                x = left;
+                left = left.next;
+            } else {
+                x.next = right;
+                x = right;
+                right = right.next;
+            }
+        }
+        x.next = (left == null) ? right : left;
+        return head.next;
     }
     
     public LinkedList<E> mergeParts(LinkedList<E> left, LinkedList<E> right) {
@@ -113,7 +120,6 @@ public class LinkedList<E extends Comparable<E>> {
                 // mergedCurrent = mergedCurrent.next;
             }
         }
-        
 
         return merged;
     }
@@ -132,7 +138,7 @@ public class LinkedList<E extends Comparable<E>> {
     
     public boolean contains(E element) {
         Node<E> current = front;
-        for (int i = 0; i < size; i++) { // checks entire list for a duplicate
+        for (int i = 0; i < size; i++) {
             if (current.value.equals(element)) {
                 return true;
             }
@@ -140,6 +146,17 @@ public class LinkedList<E extends Comparable<E>> {
         }
         return false;
     }
+    
+    /*
+     * public boolean isInList(E element) { // do a binary search int index =
+     * binarySearch(0, size - 1, element); return index != -1; }
+     * 
+     * private int binarySearch(int min, int max, E element) { if (min > max) {
+     * return -1; } int mid = (max - min) / 2 + min; if
+     * (element.compareTo(get(mid)) == 0) { return mid; } else if
+     * (element.compareTo(get(mid)) < 0) { return binarySearch(0, mid - 1,
+     * element); } else { return binarySearch(mid + 1, max, element); } }
+     */
     
     public E get(int index) {
         if (index < 0 || index >= size) {
@@ -183,6 +200,11 @@ public class LinkedList<E extends Comparable<E>> {
             }
             value = element;
             next = node;
+        }
+        
+        public Node() {
+            value = null;
+            next = null;
         }
     }
 }
