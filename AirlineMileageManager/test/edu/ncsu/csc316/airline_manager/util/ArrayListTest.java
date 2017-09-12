@@ -50,4 +50,28 @@ public class ArrayListTest {
         assertEquals(thirdExpectedDescription, airlines.get(2).getDescription());
     }
     
+    @Test
+    public void testGrowArray() {
+        ArrayList<String> array = new ArrayList<String>();
+        array.add("a"); // 0
+        array.add("c");
+        array.add("e");
+        array.add("f");
+        array.add("j");
+        array.add("g"); // 5
+        array.add("m");
+        array.add("b");
+        array.add("h");
+        array.add("d");
+        array.add("k"); // 10
+        array.add("i");
+        array.add("a");
+        array.add("o");
+        array.add("l");
+        array.add("n"); // 15
+        array.add("p");
+        array.add("m");
+        assertEquals("p", array.get(16));
+    }
+    
 }

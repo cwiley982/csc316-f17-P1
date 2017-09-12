@@ -60,7 +60,7 @@ public class AirlineMileageManager {
             customers = customerReader.readfile(pathToCustomerFile, flights);
             customers.sort();
         } catch (FileNotFoundException e) {
-            // TODO
+            System.out.println("File not found exception was thrown in AMM");
         }
     }
     
