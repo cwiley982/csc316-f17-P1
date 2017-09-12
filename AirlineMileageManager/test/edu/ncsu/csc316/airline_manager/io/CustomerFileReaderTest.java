@@ -33,6 +33,7 @@ public class CustomerFileReaderTest {
             LinkedList<Airline> airlines = airlineReader.readfile("input/airline_file");
             String[][] airlineArray = airlineReader.get2DArray(airlines);
             flights = flightReader.readfile("input/flight_file", airlineArray);
+            flights.sort();
         } catch (FileNotFoundException e) {
             fail();
         }
@@ -42,6 +43,7 @@ public class CustomerFileReaderTest {
     public void testFileReader() {
         try {
             actual = customerReader.readfile(filename, flights);
+            actual.sort();
             assertEquals("Mcfarland", actual.get(0).getLastName());
             assertEquals("Kassandra", actual.get(1).getFirstName());
             assertEquals(2, actual.size());

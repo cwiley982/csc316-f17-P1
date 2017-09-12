@@ -13,6 +13,11 @@ public class LinkedList<E extends Comparable<E>> {
         size = 0;
     }
     
+    public LinkedList(Node<E> front, int size) {
+        this.front = front;
+        this.size = size;
+    }
+    
     /**
      * Adds an element to the list
      * 
@@ -27,7 +32,10 @@ public class LinkedList<E extends Comparable<E>> {
         if (contains(element)) {
             throw new IllegalArgumentException();
         }
-        if (front == null) {
+        front = new Node<E>(element, front);
+        size++;
+        return true;
+        /*if (front == null) {
             front = new Node<E>(element, null);
             size++;
             return true;
@@ -39,21 +47,7 @@ public class LinkedList<E extends Comparable<E>> {
             current.next = new Node<E>(element, null);
             size++;
             return true;
-        }
-        
-        /*
-         * if (front == null || element.compareTo((E) front.value) < 0) { //
-         * element comes before current, add to front front = new
-         * Node<E>(element, front); size++; return true; }
-         * 
-         * Node<E> current = front; boolean cont = true; while (cont) { if
-         * (current.next == null || element.compareTo((E) current.next.value) <
-         * 0) { // next value is null, element has to be next OR // element
-         * comes before next but after current, stop traversing cont = false; }
-         * else if (element.compareTo((E) current.next.value) > 0) { // element
-         * comes after next node, keep traversing list current = current.next; }
-         * }
-         */
+        }*/
     }
     
     public void sort() {
@@ -91,35 +85,54 @@ public class LinkedList<E extends Comparable<E>> {
     public LinkedList<E> mergeParts(LinkedList<E> left, LinkedList<E> right) {
         // merge parts similarly to in Miles
         LinkedList<E> merged = new LinkedList<E>();
+        // Node<E> mergedCurrent = merged.front;
         Node<E> leftCurrent = left.front;
         Node<E> rightCurrent = right.front;
+        
         while (leftCurrent != null & rightCurrent != null) {
             if (leftCurrent.value.compareTo(rightCurrent.value) < 0) {
                 // left comes before right, add node to end of merged list
-                merged.add(leftCurrent.value);
+                merged.addToBack(leftCurrent.value, merged);
                 leftCurrent = leftCurrent.next;
+                // mergedCurrent = mergedCurrent.next;
             } else {
                 // right comes before left, add node to end of merged list
-                merged.add(rightCurrent.value);
+                merged.addToBack(rightCurrent.value, merged);
                 rightCurrent = rightCurrent.next;
+                // mergedCurrent = mergedCurrent.next;
             }
         }
         
         if (leftCurrent == null) {
             // add the rest of right to merged
             while (rightCurrent != null) {
-                merged.add(rightCurrent.value);
+                merged.addToBack(rightCurrent.value, merged);
                 rightCurrent = rightCurrent.next;
+                // mergedCurrent = mergedCurrent.next;
             }
         } else if (rightCurrent == null) {
             // add rest of left to merged
             while (leftCurrent != null) {
-                merged.add(leftCurrent.value);
+                merged.addToBack(leftCurrent.value, merged);
                 leftCurrent = leftCurrent.next;
+                // mergedCurrent = mergedCurrent.next;
             }
         }
         
+
         return merged;
+    }
+    
+    private void addToBack(E element, LinkedList<E> merged) {
+        if (merged.front == null) {
+            front = new Node<E>(element, null);
+        } else {
+            Node<E> current = merged.front;
+            while (current.next != null) {
+                current = current.next;
+            }
+            current.next = new Node<E>(element, null);
+        }
     }
     
     public boolean contains(E element) {

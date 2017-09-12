@@ -10,6 +10,8 @@ import edu.ncsu.csc316.airline_mileage.util.LinkedList;
 
 public class CustomerFileReader {
     
+    private LinkedList<Flight> flights;
+    
     /*
      * I want to return an LinkedList of Customers, but I need to figure out how
      * to deal with there being multiple instances of the same customer in a
@@ -21,6 +23,7 @@ public class CustomerFileReader {
      */
     public LinkedList<Customer> readfile(String filename, LinkedList<Flight> flights)
             throws FileNotFoundException {
+        this.flights = flights;
         LinkedList<Customer> customers = new LinkedList<Customer>();
         Scanner scan = new Scanner(new File(filename));
         scan.nextLine(); // skips first line that describes each column
@@ -47,22 +50,58 @@ public class CustomerFileReader {
                     }
                 }
             }
-            x.addFlight(findMatch(dateString, flight, origin, dest, flights));
+            x.addFlight(findMatch(dateString, flight, origin, dest));
         }
         scan.close();
         return customers;
     }
     
-    private static Flight findMatch(String date, String flight, String origin, String destination,
-            LinkedList<Flight> flights) {
+    private Flight findMatch(String date, String flightString, String origin, String destination) {
         // find matching flight, use binary search
-        for (int i = 0; i < flights.size(); i++) {
-            Flight x = flights.get(i);
-            if (x.getDate().equals(date) && x.getFlightString().equals(flight)
-                    && x.getOrigin().equals(origin) && x.getDestination().equals(destination)) {
-                return x;
-            }
+        
+        /*
+         * for (int i = 0; i < flights.size(); i++) { Flight x = flights.get(i);
+         * if (x.getDate().equals(date) && x.getFlightString().equals(flight) &&
+         * x.getOrigin().equals(origin) &&
+         * x.getDestination().equals(destination)) { return x; } }
+         */
+        int index = binarySearch(0, flights.size() - 1, flightString, origin, destination);
+        if (index != -1) {
+            return flights.get(index);
+        } else {
+            return null;
         }
-        return null;
+    }
+    
+    private int binarySearch(int min, int max, String flightString, String origin,
+            String destination) {
+        // recursive call
+        if (min > max) { // entire list was searched through, flight not found
+            return -1;
+        }
+        int mid = ((max - min) / 2) + min;
+        Flight midFlight = flights.get(mid);
+        if (flightString.compareTo(midFlight.getFlightString()) == 0) {
+            if (origin.compareTo(midFlight.getOrigin()) == 0) {
+                if (destination.compareTo(midFlight.getDestination()) == 0) {
+                    return mid;
+                } else if (destination.compareTo(midFlight.getDestination()) < 0) {
+                    // dest comes before midFlight, check left half
+                    return binarySearch(min, mid - 1, flightString, origin, destination);
+                } else {
+                    return binarySearch(mid + 1, max, flightString, origin, destination);
+                }
+            } else if (origin.compareTo(midFlight.getOrigin()) < 0) {
+                // look in left
+                return binarySearch(0, mid - 1, flightString, origin, destination);
+            } else {
+                // look in right
+                return binarySearch(mid + 1, max, flightString, origin, destination);
+            }
+        } else if (flightString.compareTo(midFlight.getFlightString()) < 0) {
+            return binarySearch(0, mid - 1, flightString, origin, destination);
+        } else {
+            return binarySearch(mid + 1, max, flightString, origin, destination);
+        }
     }
 }
