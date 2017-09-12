@@ -20,9 +20,8 @@ public class AirlineFileReader {
             lineScan.useDelimiter(",");
             String description = lineScan.next();
             String airline_code = lineScan.next();
-            String callsign = lineScan.next();
-            String country = lineScan.next();
-            airlines.add(new Airline(description, airline_code, callsign, country));
+            lineScan.close();
+            airlines.add(new Airline(description, airline_code));
         }
         scan.close();
         return airlines;

@@ -4,14 +4,10 @@ public class Airline implements Comparable<Airline> {
     
     private String description;
     private String airline_code;
-    private String callsign;
-    private String country;
     
-    public Airline(String description, String airline_code, String callsign, String country) {
+    public Airline(String description, String airline_code) {
         setDescription(description);
         setAirlineCode(airline_code);
-        setCallsign(callsign);
-        setCountry(country);
     }
     
     /**
@@ -29,20 +25,6 @@ public class Airline implements Comparable<Airline> {
     }
     
     /**
-     * @return the callsign of the airline
-     */
-    public String getCallsign() {
-        return callsign;
-    }
-    
-    /**
-     * @return the country
-     */
-    public String getCountry() {
-        return country;
-    }
-    
-    /**
      * @param description
      *            the description to set
      */
@@ -56,22 +38,6 @@ public class Airline implements Comparable<Airline> {
      */
     private void setAirlineCode(String airline_code) {
         this.airline_code = airline_code;
-    }
-    
-    /**
-     * @param callsign
-     *            the callsign to set
-     */
-    private void setCallsign(String callsign) {
-        this.callsign = callsign;
-    }
-    
-    /**
-     * @param country
-     *            the country to set
-     */
-    private void setCountry(String country) {
-        this.country = country;
     }
     
     @Override

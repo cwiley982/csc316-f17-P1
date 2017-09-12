@@ -22,12 +22,9 @@ public class FlightFileReaderTest {
     
     @Before
     public void setUp() throws Exception {
-        Flight united = new Flight("12/20/2015", 7, "UA", "United Airlines", 346, "ORD", "MIA",
-                0730, 0730, 1197, 1139, -20);
-        Flight delta = new Flight("7/26/2015", 7, "DL", "Delta Air Lines", 1233, "ATL", "ORF", 1030,
-                1026, 516, 1209, -20);
-        Flight jetblue = new Flight("1/27/2015", 2, "B6", "JetBlue Airways", 1316, "FLL", "JAX",
-                1855, 1854, 319, 2013, 2);
+        Flight united = new Flight("UA", "United Airlines", 346, "ORD", "MIA", 1197);
+        Flight delta = new Flight("DL", "Delta Air Lines", 1233, "ATL", "ORF", 516);
+        Flight jetblue = new Flight("B6", "JetBlue Airways", 1316, "FLL", "JAX", 319);
         flights = new LinkedList<Flight>();
         flights.add(united); // third
         flights.add(delta); // second
@@ -43,12 +40,7 @@ public class FlightFileReaderTest {
             actual.sort();
             assertEquals("B6", actual.get(0).getAirlineCode());
             assertEquals("ATL", actual.get(1).getOrigin());
-            assertEquals(-20, actual.get(2).getArrivalDelay());
-            assertEquals(2, actual.get(0).getDayOfWeek());
             assertEquals(1233, actual.get(1).getFlightNumber());
-            assertEquals(1855, actual.get(0).getScheduledDeparture());
-            assertEquals(1026, actual.get(1).getActualDeparture());
-            assertEquals(1139, actual.get(2).getScheduledArrival());
             assertEquals(3, actual.size());
         } catch (FileNotFoundException e) {
             fail();

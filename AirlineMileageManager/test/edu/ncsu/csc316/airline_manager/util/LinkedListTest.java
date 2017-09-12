@@ -14,7 +14,7 @@ import edu.ncsu.csc316.airline_mileage.util.LinkedList;
 public class LinkedListTest {
     
     private String firstExpectedAirlineCode = "B6";
-    private String secondExpectedCallsign = "DELTA";
+    private String secondExpectedAirlineCode = "DL";
     private String thirdExpectedDescription = "United Airlines";
     private String airlineFilename = "input/airline_file";
     private AirlineFileReader airlineReader = new AirlineFileReader();
@@ -33,7 +33,7 @@ public class LinkedListTest {
     public void testMergeSort() {
         airlines.sort();
         assertEquals(firstExpectedAirlineCode, airlines.get(0).getAirlineCode());
-        assertEquals(secondExpectedCallsign, airlines.get(1).getCallsign());
+        assertEquals(secondExpectedAirlineCode, airlines.get(1).getAirlineCode());
         assertEquals(thirdExpectedDescription, airlines.get(2).getDescription());
     }
     

@@ -58,13 +58,6 @@ public class CustomerFileReader {
     
     private Flight findMatch(String date, String flightString, String origin, String destination) {
         // find matching flight, use binary search
-        
-        /*
-         * for (int i = 0; i < flights.size(); i++) { Flight x = flights.get(i);
-         * if (x.getDate().equals(date) && x.getFlightString().equals(flight) &&
-         * x.getOrigin().equals(origin) &&
-         * x.getDestination().equals(destination)) { return x; } }
-         */
         int index = binarySearch(0, flights.size() - 1, flightString, origin, destination);
         if (index != -1) {
             return flights.get(index);

@@ -2,68 +2,21 @@ package edu.ncsu.csc316.airline_mileage.data;
 
 public class Flight implements Comparable<Flight> {
     
-    private String date;
-    private int day_of_week;
     private String airline_code;
     private String airline;
     private int flight_number;
     private String origin;
     private String destination;
-    private int scheduled_departure;
-    private int actual_departure;
     private int distance;
-    private int scheduled_arrival;
-    private int arrival_delay;
     
-    public Flight(String date, int day_of_week, String airline_code, String airline,
-            int flight_number, String origin, String dest, int sched_depart, int act_depart,
-            int dist, int sched_arr, int arr_delay) {
-        setDate(date);
-        setDayOfWeek(day_of_week);
+    public Flight(String airline_code, String airline, int flight_number,
+            String origin, String dest, int dist) {
         setAirlineCode(airline_code);
         setAirline(airline);
         setFlightNumber(flight_number);
         setOrigin(origin);
         setDestination(dest);
-        setScheduledDeparture(sched_depart);
-        setActualDeparture(act_depart);
         setDistance(dist);
-        setScheduledArrival(sched_arr);
-        setArrivalDelay(arr_delay);
-    }
-    
-    // /**
-    // * @return the date
-    // */
-    // public String getDate() {
-    // return date;
-    // }
-    
-    /**
-     * @param year
-     *            the year to use in the date
-     * @param month
-     *            the month to use in the date
-     * @param day
-     *            the day to use in the date
-     */
-    private void setDate(String date) {
-        this.date = date;
-    }
-    
-    /**
-     * @return the day_of_week
-     */
-    public int getDayOfWeek() {
-        return day_of_week;
-    }
-    
-    /**
-     * @param day_of_week
-     *            the day_of_week to set
-     */
-    private void setDayOfWeek(int day_of_week) {
-        this.day_of_week = day_of_week;
     }
     
     /**
@@ -127,36 +80,6 @@ public class Flight implements Comparable<Flight> {
     }
     
     /**
-     * @return the scheduled_departure
-     */
-    public int getScheduledDeparture() {
-        return scheduled_departure;
-    }
-    
-    /**
-     * @param scheduled_departure
-     *            the scheduled_departure to set
-     */
-    private void setScheduledDeparture(int scheduled_departure) {
-        this.scheduled_departure = scheduled_departure;
-    }
-    
-    /**
-     * @return the actual_departure
-     */
-    public int getActualDeparture() {
-        return actual_departure;
-    }
-    
-    /**
-     * @param actual_departure
-     *            the actual_departure to set
-     */
-    private void setActualDeparture(int actual_departure) {
-        this.actual_departure = actual_departure;
-    }
-    
-    /**
      * @return the distance
      */
     public int getDistance() {
@@ -169,44 +92,6 @@ public class Flight implements Comparable<Flight> {
      */
     private void setDistance(int distance) {
         this.distance = distance;
-    }
-    
-    /**
-     * Gets the scheduled arrival for the flight
-     * 
-     * @return the scheduled arrival time for the flight
-     */
-    public int getScheduledArrival() {
-        return scheduled_arrival;
-    }
-    
-    /**
-     * Sets the scheduled arrival for the flight
-     * 
-     * @param scheduled_arrival
-     *            the time the flight is scheduled to arrive
-     */
-    private void setScheduledArrival(int scheduled_arrival) {
-        this.scheduled_arrival = scheduled_arrival;
-    }
-    
-    /**
-     * Gets the arrival delay for the flight
-     * 
-     * @return the arrival delay for the flight
-     */
-    public int getArrivalDelay() {
-        return arrival_delay;
-    }
-    
-    /**
-     * Sets the arrival delay for the flight
-     * 
-     * @param arrival_delay
-     *            the arrival_delay to set
-     */
-    private void setArrivalDelay(int arrival_delay) {
-        this.arrival_delay = arrival_delay;
     }
     
     /**

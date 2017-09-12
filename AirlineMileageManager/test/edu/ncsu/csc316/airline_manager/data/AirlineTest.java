@@ -11,8 +11,8 @@ public class AirlineTest {
     
     @Test
     public void testCompareTo() {
-        Airline a1 = new Airline("United Airlines", "UA", "UNITED", "United States");
-        Airline a2 = new Airline("American Airlines", "AA", "AMERICAN", "United States");
+        Airline a1 = new Airline("United Airlines", "UA");
+        Airline a2 = new Airline("American Airlines", "AA");
         assertTrue(a2.compareTo(a1) < 0);
         assertTrue(a1.compareTo(a2) > 0);
         assertEquals(0, a1.compareTo(a1));

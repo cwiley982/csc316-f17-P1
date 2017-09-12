@@ -10,17 +10,12 @@ public class FlightTest {
     
     @Test
     public void testCompareTo() {
-        Flight f1 = new Flight("1/12/2023", 2, "UA", "United Airlines", 234, "MIA", "FOR", 534, 524,
-                700, 1120, 32);
-        Flight f2 = new Flight("1/12/2023", 2, "UA", "United Airlines", 234, "MIA", "FOR", 534, 524, 700, 1120, 32);
-        Flight f3 = new Flight("1/12/2023", 2, "UA", "United Airlines", 234, "MIA", "FOX", 534, 524,
-                700, 1120, 32);
-        Flight f4 = new Flight("1/12/2023", 2, "UA", "United Airlines", 234, "MIN", "FOX", 534, 524,
-                700, 1120, 32);
-        Flight f5 = new Flight("1/12/2023", 2, "UA", "United Airlines", 235, "MIN", "FOX", 534, 524,
-                700, 1120, 32);
-        Flight f6 = new Flight("1/12/2023", 2, "AA", "American Airlines", 234, "MIN", "FOX", 534,
-                524, 700, 1120, 32);
+        Flight f1 = new Flight("UA", "United Airlines", 234, "MIA", "FOR", 700);
+        Flight f2 = new Flight("UA", "United Airlines", 234, "MIA", "FOR", 700);
+        Flight f3 = new Flight("UA", "United Airlines", 234, "MIA", "FOX", 700);
+        Flight f4 = new Flight("UA", "United Airlines", 234, "MIN", "FOX", 700);
+        Flight f5 = new Flight("UA", "United Airlines", 235, "MIN", "FOX", 700);
+        Flight f6 = new Flight("AA", "American Airlines", 234, "MIN", "FOX", 700);
         assertEquals(0, f1.compareTo(f2));
         assertEquals(-1, f1.compareTo(f3));
         assertEquals(1, f3.compareTo(f1));
