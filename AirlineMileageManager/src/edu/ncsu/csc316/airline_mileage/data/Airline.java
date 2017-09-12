@@ -15,7 +15,9 @@ public class Airline implements Comparable<Airline> {
      * Constructs an airline object and sets the fields
      * 
      * @param description
+     *            description of airline
      * @param airlineCode
+     *            code for airline
      */
     public Airline(String description, String airlineCode) {
         setDescription(description);

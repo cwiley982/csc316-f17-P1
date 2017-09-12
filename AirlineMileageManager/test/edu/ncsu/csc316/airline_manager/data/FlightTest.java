@@ -6,8 +6,17 @@ import org.junit.Test;
 
 import edu.ncsu.csc316.airline_mileage.data.Flight;
 
+/**
+ * Tests functionality of Flight class
+ * 
+ * @author Caitlyn
+ *
+ */
 public class FlightTest {
     
+    /**
+     * Tests compareTo method
+     */
     @Test
     public void testCompareTo() {
         Flight f1 = new Flight("UA", "United Airlines", 234, "MIA", "FOR", 700);

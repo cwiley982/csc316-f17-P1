@@ -11,6 +11,12 @@ import edu.ncsu.csc316.airline_manager.io.AirlineFileReader;
 import edu.ncsu.csc316.airline_mileage.data.Airline;
 import edu.ncsu.csc316.airline_mileage.util.LinkedList;
 
+/**
+ * Tests LinkedList functionality
+ * 
+ * @author Caitlyn Wiley
+ *
+ */
 public class LinkedListTest {
     
     private String firstExpectedAirlineCode = "B6";
@@ -20,6 +26,9 @@ public class LinkedListTest {
     private AirlineFileReader airlineReader = new AirlineFileReader();
     private LinkedList<Airline> airlines;
     
+    /**
+     * creates linked list of airlines to be tested later
+     */
     @Before
     public void setUp() {
         try {
@@ -29,6 +38,9 @@ public class LinkedListTest {
         }
     }
     
+    /**
+     * Tests that mergeSort method sorts correctly
+     */
     @Test
     public void testMergeSort() {
         airlines.sort();

@@ -12,6 +12,12 @@ import edu.ncsu.csc316.airline_mileage.data.Airline;
 import edu.ncsu.csc316.airline_mileage.data.Flight;
 import edu.ncsu.csc316.airline_mileage.util.LinkedList;
 
+/**
+ * Tests FlightFileReader functionality
+ * 
+ * @author Caitlyn
+ *
+ */
 public class FlightFileReaderTest {
     
     private String[][] airlineArray;
@@ -19,14 +25,23 @@ public class FlightFileReaderTest {
     private AirlineFileReader airlineReader = new AirlineFileReader();
     private FlightFileReader flightReader = new FlightFileReader();
     
+    /**
+     * Sets up list of airlines to use in test
+     * 
+     * @throws Exception
+     *             if airline file isn't read in correctly
+     */
     @Before
     public void setUp() throws Exception {
         LinkedList<Airline> airlines = airlineReader.readfile("input/airline_file");
         airlineArray = airlineReader.get2DArray(airlines);
     }
     
+    /**
+     * tests fileReader method
+     */
     @Test
-    public void test() {
+    public void testFileReader() {
         try {
             actual = flightReader.readfile("input/flight_file", airlineArray);
             actual.sort();

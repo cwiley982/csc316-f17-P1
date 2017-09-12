@@ -6,10 +6,19 @@ import org.junit.Test;
 
 import edu.ncsu.csc316.airline_mileage.data.Miles;
 
+/**
+ * Tests functionality of Miles class
+ * 
+ * @author Caitlyn
+ *
+ */
 public class MilesTest {
     
+    /**
+     * tests getting a customer's mile reports
+     */
     @Test
-    public void test() {
+    public void testGetMilesReport() {
         Miles miles = new Miles();
         miles.addMiles("United Airlines", "UA", 1234);
         miles.addMiles("American Airlines", "AA", 1234);

@@ -11,61 +11,79 @@ import org.junit.Test;
 
 import edu.ncsu.csc316.airline_mileage.data.Customer;
 
+/**
+ * Tests functionality of Customer class
+ * 
+ * @author Caitlyn Wiley
+ *
+ */
 public class CustomerTest {
     
-    private String first_name = "Caitlyn";
-    private String last_name = "Wiley";
-    private Customer customer = new Customer(first_name, last_name);
+    private String firstName = "Caitlyn";
+    private String lastName = "Wiley";
+    private Customer customer = new Customer(firstName, lastName);
     
+    /**
+     * Tests constructing a customer object with valid and invalid arguments
+     */
     @Test
     public void testCustomer() {
         Customer c = null;
         
         try {
-            c = new Customer("", last_name);
+            c = new Customer("", lastName);
             fail();
         } catch (IllegalArgumentException e) {
             assertNull(c);
         }
         
         try {
-            c = new Customer(null, last_name);
+            c = new Customer(null, lastName);
             fail();
         } catch (IllegalArgumentException e) {
             assertNull(c);
         }
         
         try {
-            c = new Customer(first_name, "");
+            c = new Customer(firstName, "");
             fail();
         } catch (IllegalArgumentException e) {
             assertNull(c);
         }
         
         try {
-            c = new Customer(first_name, null);
+            c = new Customer(firstName, null);
             fail();
         } catch (IllegalArgumentException e) {
             assertNull(c);
         }
         
         try {
-            c = new Customer(first_name, last_name);
+            c = new Customer(firstName, lastName);
         } catch (IllegalArgumentException e) {
             assertNotNull(c);
         }
     }
     
+    /**
+     * Tests getting first name
+     */
     @Test
     public void testGetFirstName() {
         assertEquals("Caitlyn", customer.getFirstName());
     }
     
+    /**
+     * tests getting last name
+     */
     @Test
     public void testGetLastName() {
         assertEquals("Wiley", customer.getLastName());
     }
     
+    /**
+     * tests the compareTo method
+     */
     @Test
     public void testCompareTo() {
         Customer c2 = new Customer("Courtney", "Wiley");
@@ -78,6 +96,9 @@ public class CustomerTest {
         assertEquals(0, c2.compareTo(c2));
     }
     
+    /**
+     * Tests the equals method
+     */
     @Test
     public void testEquals() {
         Customer c2 = new Customer("Courtney", "Wiley");
@@ -88,6 +109,9 @@ public class CustomerTest {
         assertFalse(c4.equals(c3));
     }
     
+    /**
+     * tests the hashCode method
+     */
     @Test
     public void testHashCode() {
         Customer c = new Customer("Caitlyn", "Wiley");

@@ -6,6 +6,12 @@ import org.junit.Test;
 
 import edu.ncsu.csc316.airline_mileage.manager.AirlineMileageManager;
 
+/**
+ * Tests AMM functionality
+ * 
+ * @author Caitlyn Wiley
+ *
+ */
 public class AirlineMileageMangerTest {
     
     private AirlineMileageManager manager;
@@ -18,6 +24,9 @@ public class AirlineMileageMangerTest {
             + erickMcfarlandReport + "\n\n" + kassandraStiltnerReport
             + "\n\nCaitlyn Wiley earned\n    200 miles with Caitlyn Air Ways (CA)\n\nErick Zynn earned\n    220 miles with Sky Cameron (SC)";
     
+    /**
+     * tests all methods in AMM
+     */
     @Test
     public void test() {
         manager = new AirlineMileageManager(airlineFile, customerFile, flightFile);

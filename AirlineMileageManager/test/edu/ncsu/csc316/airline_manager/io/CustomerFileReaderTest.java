@@ -13,6 +13,12 @@ import edu.ncsu.csc316.airline_mileage.data.Customer;
 import edu.ncsu.csc316.airline_mileage.data.Flight;
 import edu.ncsu.csc316.airline_mileage.util.LinkedList;
 
+/**
+ * Tests CustomerFileReader functionality
+ * 
+ * @author Caitlyn
+ *
+ */
 public class CustomerFileReaderTest {
     
     private String filename = "input/customer_file";
@@ -25,6 +31,9 @@ public class CustomerFileReaderTest {
     private FlightFileReader flightReader = new FlightFileReader();
     private CustomerFileReader customerReader = new CustomerFileReader();
     
+    /**
+     * sets up list of airlines and flights to use in reading in customer file
+     */
     @Before
     public void setUp() {
         customers.add(c1);
@@ -39,6 +48,9 @@ public class CustomerFileReaderTest {
         }
     }
     
+    /**
+     * tests fileReader method
+     */
     @Test
     public void testFileReader() {
         try {

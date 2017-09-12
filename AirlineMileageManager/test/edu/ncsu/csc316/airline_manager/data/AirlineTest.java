@@ -7,8 +7,17 @@ import org.junit.Test;
 
 import edu.ncsu.csc316.airline_mileage.data.Airline;
 
+/**
+ * Tests functionality of Airline class
+ * 
+ * @author Caitlyn
+ *
+ */
 public class AirlineTest {
     
+    /**
+     * tests the compareTo method
+     */
     @Test
     public void testCompareTo() {
         Airline a1 = new Airline("United Airlines", "UA");

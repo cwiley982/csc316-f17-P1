@@ -10,12 +10,21 @@ import org.junit.Test;
 import edu.ncsu.csc316.airline_mileage.data.Airline;
 import edu.ncsu.csc316.airline_mileage.util.LinkedList;
 
+/**
+ * Tests AirlineFileReader functionality
+ * 
+ * @author Caitlyn Wiley
+ *
+ */
 public class AirlineFileReaderTest {
     
     private String filename = "input/airline_file";
     private LinkedList<Airline> actual;
     private AirlineFileReader airlineReader = new AirlineFileReader();
     
+    /**
+     * tests fileReader method
+     */
     @Test
     public void testFileReader() {
         try {
