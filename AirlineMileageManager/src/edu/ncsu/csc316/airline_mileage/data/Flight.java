@@ -2,13 +2,35 @@ package edu.ncsu.csc316.airline_mileage.data;
 
 public class Flight implements Comparable<Flight> {
     
+    /** The 2 character airline code */
     private String airline_code;
+    /** The full name of the airline */
     private String airline;
+    /** The flight number */
     private int flight_number;
+    /** The origin of the flight */
     private String origin;
+    /** The destination of the flight */
     private String destination;
+    /** Distance the flight flew in miles */
     private int distance;
     
+    /**
+     * Constructs a flight object with all necessary information to se fields
+     * 
+     * @param airline_code
+     *            airline code of the flight
+     * @param airline
+     *            full name of the airline the flight is with
+     * @param flight_number
+     *            number of the flight
+     * @param origin
+     *            where the flight started
+     * @param dest
+     *            where the flight ended
+     * @param dist
+     *            how far the flight went
+     */
     public Flight(String airline_code, String airline, int flight_number,
             String origin, String dest, int dist) {
         setAirlineCode(airline_code);
@@ -20,6 +42,8 @@ public class Flight implements Comparable<Flight> {
     }
     
     /**
+     * Gets the airline code
+     * 
      * @return the airline
      */
     public String getAirlineCode() {
@@ -27,6 +51,8 @@ public class Flight implements Comparable<Flight> {
     }
     
     /**
+     * Sets the airline code
+     * 
      * @param airline
      *            the airline to set
      */
@@ -35,6 +61,8 @@ public class Flight implements Comparable<Flight> {
     }
     
     /**
+     * Gets the flight number
+     * 
      * @return the flight_number
      */
     public int getFlightNumber() {
@@ -42,6 +70,8 @@ public class Flight implements Comparable<Flight> {
     }
     
     /**
+     * Sets the flight number
+     * 
      * @param flight_number
      *            the flight_number to set
      */
@@ -50,6 +80,8 @@ public class Flight implements Comparable<Flight> {
     }
     
     /**
+     * Gets the origin of the flight
+     * 
      * @return the origin
      */
     public String getOrigin() {
@@ -57,6 +89,8 @@ public class Flight implements Comparable<Flight> {
     }
     
     /**
+     * Sets the origin
+     * 
      * @param origin
      *            the origin to set
      */
@@ -65,6 +99,8 @@ public class Flight implements Comparable<Flight> {
     }
     
     /**
+     * Gets where the flight arrived
+     * 
      * @return the destination
      */
     public String getDestination() {
@@ -72,6 +108,8 @@ public class Flight implements Comparable<Flight> {
     }
     
     /**
+     * Sets the destination of the flight
+     * 
      * @param destination
      *            the destination to set
      */
@@ -80,6 +118,8 @@ public class Flight implements Comparable<Flight> {
     }
     
     /**
+     * Gets the number of miles the flight flew
+     * 
      * @return the distance
      */
     public int getDistance() {
@@ -87,8 +127,10 @@ public class Flight implements Comparable<Flight> {
     }
     
     /**
+     * Sets the distance this flight flew
+     * 
      * @param distance
-     *            the distance to set
+     *            the distance the flight flew
      */
     private void setDistance(int distance) {
         this.distance = distance;
@@ -103,6 +145,12 @@ public class Flight implements Comparable<Flight> {
         return airline;
     }
     
+    /**
+     * Sets the airline passed in to be the airline for the flight object
+     * 
+     * @param airline
+     *            the airline to set
+     */
     public void setAirline(String airline) {
         this.airline = airline;
     }
@@ -132,6 +180,11 @@ public class Flight implements Comparable<Flight> {
         }
     }
     
+    /**
+     * Gets a string containing the airline code and flight number
+     * 
+     * @return string containing the airline code and flight number
+     */
     public String getFlightString() {
         return airline_code + flight_number;
     }

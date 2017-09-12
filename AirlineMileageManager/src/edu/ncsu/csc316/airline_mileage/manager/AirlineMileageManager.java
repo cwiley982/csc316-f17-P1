@@ -10,6 +10,14 @@ import edu.ncsu.csc316.airline_mileage.data.Customer;
 import edu.ncsu.csc316.airline_mileage.data.Flight;
 import edu.ncsu.csc316.airline_mileage.util.LinkedList;
 
+/**
+ * This is the main class that reads in the input files and gets the miles for
+ * each customer individually and gets a mileage report for all customers at
+ * once.
+ * 
+ * @author Caitlyn Wiley
+ *
+ */
 public class AirlineMileageManager {
     
     /** Holds a list of all customers from file specified by user */
@@ -18,9 +26,16 @@ public class AirlineMileageManager {
     private LinkedList<Flight> flights;
     /** Holds a list of all airlines from file specified by user */
     private LinkedList<Airline> airlines;
+    /** Creates and AirlineFileReader object to read in the airline file */
     private AirlineFileReader airlineReader = new AirlineFileReader();
+    /** Creates a FlightFileReader object to read in the flight file */
     private FlightFileReader flightReader = new FlightFileReader();
+    /** Creates a CustomerFileReader object to read in the customer file */
     private CustomerFileReader customerReader = new CustomerFileReader();
+    /**
+     * Stores the airline codes and descriptions for each airline, to ba
+     * accessed in flight reader
+     */
     private String[][] airlineCodesAndNames;
     
     /**
@@ -87,6 +102,16 @@ public class AirlineMileageManager {
         }
     }
     
+    /**
+     * Gets a customer by their first and last name using binary search
+     * 
+     * @param first
+     *            first name of the customer
+     * @param last
+     *            last name of the customer
+     * @return a Customer object holding the customer with matching first and
+     *         last names, null is no sch customer exists
+     */
     private Customer getCustomer(String first, String last) {
         Customer c = new Customer(first, last);
         int index = binarySearch(0, customers.size() - 1, c);
@@ -97,6 +122,20 @@ public class AirlineMileageManager {
         }
     }
     
+    /**
+     * Recursively searches through the list by checking to see if the customer
+     * will be in the left or right half of the list, then checking that half
+     * and so on
+     * 
+     * @param min
+     *            minimum index of the list
+     * @param max
+     *            maximum index of the list
+     * @param c
+     *            the customer to search for
+     * @return the index where the customer was found, -1 if customer wasn't
+     *         found
+     */
     private int binarySearch(int min, int max, Customer c) {
         // recursive call
         if (min > max) { // entire list was searched through, customer not found

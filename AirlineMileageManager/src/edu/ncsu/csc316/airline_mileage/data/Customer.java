@@ -2,20 +2,43 @@ package edu.ncsu.csc316.airline_mileage.data;
 
 public class Customer implements Comparable<Customer> {
     
+    /** First name of the customer */
     private String first_name;
+    /** Last name of the customer */
     private String last_name;
+    /** Keeps track of miles accumulated with each airline */
     private Miles miles;
     
+    /**
+     * Constructs a customer with first and last name
+     * 
+     * @param first_name
+     *            customer's first name
+     * @param last_name
+     *            customer's last name
+     */
     public Customer(String first_name, String last_name) {
         setFirstName(first_name);
         setLastName(last_name);
         miles = new Miles();
     }
     
+    /**
+     * Adds miles for flight passed in to the miles field
+     * 
+     * @param f
+     *            flight to get miles for
+     */
     public void addFlight(Flight f) {
         miles.addMiles(f.getAirline(), f.getAirlineCode(), f.getDistance());
     }
     
+    /**
+     * Returns a string representation of the customer's miles field with their
+     * full name in front
+     * 
+     * @return string describing miles flown
+     */
     public String getMileageReport() {
         String report = "";
         report += first_name + " " + last_name + " earned" + miles.getMilesReport();
@@ -23,6 +46,8 @@ public class Customer implements Comparable<Customer> {
     }
     
     /**
+     * Gets the first name
+     * 
      * @return the first_name
      */
     public String getFirstName() {
@@ -30,6 +55,8 @@ public class Customer implements Comparable<Customer> {
     }
     
     /**
+     * Sets the first name
+     * 
      * @param first_name
      *            the first_name to set
      */
@@ -41,6 +68,8 @@ public class Customer implements Comparable<Customer> {
     }
     
     /**
+     * Gets the last name
+     * 
      * @return the last_name
      */
     public String getLastName() {
@@ -48,6 +77,8 @@ public class Customer implements Comparable<Customer> {
     }
     
     /**
+     * Sets the last name
+     * 
      * @param last_name
      *            the last_name to set
      */
