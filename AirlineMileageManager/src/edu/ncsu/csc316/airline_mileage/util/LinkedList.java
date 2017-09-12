@@ -13,11 +13,6 @@ public class LinkedList<E extends Comparable<E>> {
         size = 0;
     }
     
-    public LinkedList(Node<E> front, int size) {
-        this.front = front;
-        this.size = size;
-    }
-    
     /**
      * Adds an element to the list
      * 
