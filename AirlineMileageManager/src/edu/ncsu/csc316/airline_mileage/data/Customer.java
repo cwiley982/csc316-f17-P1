@@ -1,25 +1,31 @@
 package edu.ncsu.csc316.airline_mileage.data;
 
+/**
+ * Creates a customer object with fields first and last name
+ * 
+ * @author Caitlyn Wiley
+ *
+ */
 public class Customer implements Comparable<Customer> {
     
     /** First name of the customer */
-    private String first_name;
+    private String firstName;
     /** Last name of the customer */
-    private String last_name;
+    private String lastName;
     /** Keeps track of miles accumulated with each airline */
     private Miles miles;
     
     /**
-     * Constructs a customer with first and last name
+     * Constructs a customer with first and last name and sets fields
      * 
-     * @param first_name
+     * @param firstName
      *            customer's first name
-     * @param last_name
+     * @param lastName
      *            customer's last name
      */
-    public Customer(String first_name, String last_name) {
-        setFirstName(first_name);
-        setLastName(last_name);
+    public Customer(String firstName, String lastName) {
+        setFirstName(firstName);
+        setLastName(lastName);
         miles = new Miles();
     }
     
@@ -41,7 +47,7 @@ public class Customer implements Comparable<Customer> {
      */
     public String getMileageReport() {
         String report = "";
-        report += first_name + " " + last_name + " earned" + miles.getMilesReport();
+        report += firstName + " " + lastName + " earned" + miles.getMilesReport();
         return report;
     }
     
@@ -51,20 +57,20 @@ public class Customer implements Comparable<Customer> {
      * @return the first_name
      */
     public String getFirstName() {
-        return first_name;
+        return firstName;
     }
     
     /**
      * Sets the first name
      * 
-     * @param first_name
+     * @param firstName
      *            the first_name to set
      */
-    private void setFirstName(String first_name) {
-        if (first_name == null || first_name.isEmpty()) {
+    private void setFirstName(String firstName) {
+        if (firstName == null || firstName.isEmpty()) {
             throw new IllegalArgumentException("Invalid first name.");
         }
-        this.first_name = first_name;
+        this.firstName = firstName;
     }
     
     /**
@@ -73,20 +79,20 @@ public class Customer implements Comparable<Customer> {
      * @return the last_name
      */
     public String getLastName() {
-        return last_name;
+        return lastName;
     }
     
     /**
      * Sets the last name
      * 
-     * @param last_name
+     * @param lastName
      *            the last_name to set
      */
-    private void setLastName(String last_name) {
-        if (last_name == null || last_name.isEmpty()) {
+    private void setLastName(String lastName) {
+        if (lastName == null || lastName.isEmpty()) {
             throw new IllegalArgumentException("Invalid last name.");
         }
-        this.last_name = last_name;
+        this.lastName = lastName;
     }
     
     @Override
@@ -107,8 +113,8 @@ public class Customer implements Comparable<Customer> {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((first_name == null) ? 0 : first_name.hashCode());
-        result = prime * result + ((last_name == null) ? 0 : last_name.hashCode());
+        result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+        result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
         return result;
     }
 
@@ -124,15 +130,15 @@ public class Customer implements Comparable<Customer> {
         if (getClass() != obj.getClass())
             return false;
         Customer other = (Customer) obj;
-        if (first_name == null) {
-            if (other.first_name != null)
+        if (firstName == null) {
+            if (other.firstName != null)
                 return false;
-        } else if (!first_name.equals(other.first_name))
+        } else if (!firstName.equals(other.firstName))
             return false;
-        if (last_name == null) {
-            if (other.last_name != null)
+        if (lastName == null) {
+            if (other.lastName != null)
                 return false;
-        } else if (!last_name.equals(other.last_name))
+        } else if (!lastName.equals(other.lastName))
             return false;
         return true;
     }

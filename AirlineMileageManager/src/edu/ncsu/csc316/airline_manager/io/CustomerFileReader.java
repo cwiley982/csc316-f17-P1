@@ -8,18 +8,26 @@ import edu.ncsu.csc316.airline_mileage.data.Customer;
 import edu.ncsu.csc316.airline_mileage.data.Flight;
 import edu.ncsu.csc316.airline_mileage.util.LinkedList;
 
+/**
+ * This class is responsible for reading in a customer file
+ * 
+ * @author Caitlyn Wiley
+ *
+ */
 public class CustomerFileReader {
     
     private LinkedList<Flight> flights;
     
-    /*
-     * I want to return an LinkedList of Customers, but I need to figure out how
-     * to deal with there being multiple instances of the same customer in a
-     * file. Need to check to see if the person exists already, if not create a
-     * new Customer. If they do exist, need to figure out how to add flights to
-     * their list. Maybe pass in the flights LinkedList into this method so I'll
-     * have access to the flight objects already created when reading in the
-     * flight file.
+    /**
+     * Reads in a customer file and creates a linked list of Customer objects
+     * 
+     * @param filename
+     *            the file to read from
+     * @param flights
+     *            linked list of flights to match up with customer info
+     * @return linked list of customers
+     * @throws FileNotFoundException
+     *             if file can't be found and read from
      */
     public LinkedList<Customer> readfile(String filename, LinkedList<Flight> flights)
             throws FileNotFoundException {

@@ -1,5 +1,12 @@
 package edu.ncsu.csc316.airline_mileage.data;
 
+/**
+ * Creates a miles object that holds information about the miles a customer has
+ * flown on each airline
+ * 
+ * @author Caitlyn Wiley
+ *
+ */
 public class Miles {
     
     private Object[][] mileage;
@@ -8,12 +15,27 @@ public class Miles {
     private static final int RESIZE = 2;
     private int rows;
     
+    /**
+     * Constructs a miles object and initializes its state
+     */
     public Miles() {
         mileage = new Object[INIT_SIZE][3];
         rows = 0;
     }
     
-    public void addMiles(String airline, String airline_code, int miles) {
+    /**
+     * Adds a flight to this object. Increments miles for an airline if the
+     * airline is already in the array, else it adds a new row with the new
+     * airline.
+     * 
+     * @param airline
+     *            the full name of the airline
+     * @param airlineCode
+     *            the code of the airline
+     * @param miles
+     *            the miles the flight to be added has flown
+     */
+    public void addMiles(String airline, String airlineCode, int miles) {
         boolean airlineExists = false;
         for (int i = 0; i < rows; i++) {
             if (mileage[i][1].equals(airline)) {
@@ -28,7 +50,7 @@ public class Miles {
             }
             mileage[rows][0] = miles;
             mileage[rows][1] = airline;
-            mileage[rows][2] = "(" + airline_code + ")";
+            mileage[rows][2] = "(" + airlineCode + ")";
             rows++;
         }
     }
@@ -119,6 +141,11 @@ public class Miles {
         return tempArray;
     }
     
+    /**
+     * Puts the mileage array into a string to print out to the user
+     * 
+     * @return a string representation of the mileage array
+     */
     public String getMilesReport() {
         sort();
         String milesReport = "";

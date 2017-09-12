@@ -1,13 +1,20 @@
 package edu.ncsu.csc316.airline_mileage.data;
 
+/**
+ * Creates a flight object with an airline code, airline description, flight
+ * number, origin, destination and miles flown
+ * 
+ * @author Caitlyn Wiley
+ *
+ */
 public class Flight implements Comparable<Flight> {
     
     /** The 2 character airline code */
-    private String airline_code;
+    private String airlineCode;
     /** The full name of the airline */
     private String airline;
     /** The flight number */
-    private int flight_number;
+    private int flightNumber;
     /** The origin of the flight */
     private String origin;
     /** The destination of the flight */
@@ -18,11 +25,11 @@ public class Flight implements Comparable<Flight> {
     /**
      * Constructs a flight object with all necessary information to se fields
      * 
-     * @param airline_code
+     * @param airlineCode
      *            airline code of the flight
      * @param airline
      *            full name of the airline the flight is with
-     * @param flight_number
+     * @param flightNumber
      *            number of the flight
      * @param origin
      *            where the flight started
@@ -31,11 +38,11 @@ public class Flight implements Comparable<Flight> {
      * @param dist
      *            how far the flight went
      */
-    public Flight(String airline_code, String airline, int flight_number,
+    public Flight(String airlineCode, String airline, int flightNumber,
             String origin, String dest, int dist) {
-        setAirlineCode(airline_code);
+        setAirlineCode(airlineCode);
         setAirline(airline);
-        setFlightNumber(flight_number);
+        setFlightNumber(flightNumber);
         setOrigin(origin);
         setDestination(dest);
         setDistance(dist);
@@ -47,7 +54,7 @@ public class Flight implements Comparable<Flight> {
      * @return the airline
      */
     public String getAirlineCode() {
-        return airline_code;
+        return airlineCode;
     }
     
     /**
@@ -56,8 +63,8 @@ public class Flight implements Comparable<Flight> {
      * @param airline
      *            the airline to set
      */
-    private void setAirlineCode(String airline_code) {
-        this.airline_code = airline_code;
+    private void setAirlineCode(String airlineCode) {
+        this.airlineCode = airlineCode;
     }
     
     /**
@@ -66,7 +73,7 @@ public class Flight implements Comparable<Flight> {
      * @return the flight_number
      */
     public int getFlightNumber() {
-        return flight_number;
+        return flightNumber;
     }
     
     /**
@@ -75,8 +82,8 @@ public class Flight implements Comparable<Flight> {
      * @param flight_number
      *            the flight_number to set
      */
-    private void setFlightNumber(int flight_number) {
-        this.flight_number = flight_number;
+    private void setFlightNumber(int flightNumber) {
+        this.flightNumber = flightNumber;
     }
     
     /**
@@ -192,6 +199,6 @@ public class Flight implements Comparable<Flight> {
      * @return string containing the airline code and flight number
      */
     public String getFlightString() {
-        return airline_code + flight_number;
+        return airlineCode + flightNumber;
     }
 }

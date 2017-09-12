@@ -1,5 +1,13 @@
 package edu.ncsu.csc316.airline_mileage.util;
 
+/**
+ * Creates a list by linking nodes together
+ * 
+ * @author Caitlyn Wiley
+ *
+ * @param <E>
+ *            generic parameter
+ */
 public class LinkedList<E extends Comparable<E>> {
     
     private Node<E> front;
@@ -32,10 +40,21 @@ public class LinkedList<E extends Comparable<E>> {
         return true;
     }
     
+    /**
+     * Sorts the list by calling mergeSort
+     */
     public void sort() {
         front = mergeSort(this);
     }
     
+    /**
+     * Breaks the list into left and right recursively until each side only has
+     * one node, then combines left and right and sorts as it goes
+     * 
+     * @param list
+     *            the list to split in half recursively then sort
+     * @return a reference to the front node of the sorted list
+     */
     public Node<E> mergeSort(LinkedList<E> list) {
         if (list.size() == 1) {
             return list.front;
@@ -65,6 +84,16 @@ public class LinkedList<E extends Comparable<E>> {
         }
     }
     
+    /**
+     * Merges the two sides together then returns a reference to the front of
+     * the merged list
+     * 
+     * @param left
+     *            reference to the front node of the left list
+     * @param right
+     *            reference to the front node of the right list
+     * @return reference to front node of sorted list
+     */
     public Node<E> mergeParts(Node<E> left, Node<E> right) {
         Node<E> temp = new Node<E>();
         Node<E> head = temp;
@@ -126,11 +155,30 @@ public class LinkedList<E extends Comparable<E>> {
     // return false;
     // }
     
+    /**
+     * Finds if the element is already in the list
+     * 
+     * @param element
+     *            element to check for in list
+     * @return true if element is in the list already, false otherwise
+     */
     public boolean isInList(E element) { // do a binary search
         int index = binarySearch(0, size - 1, element);
         return index != -1;
     }
     
+    /**
+     * Searches recursively to find the element by narrowing down the list to
+     * half of the previous list each time
+     * 
+     * @param min
+     *            minimum index value
+     * @param max
+     *            maximum index value
+     * @param element
+     *            element to search for
+     * @return index where element was found, -1 if it wasn't found
+     */
     public int binarySearch(int min, int max, E element) {
         if (min > max) {
             return -1;
@@ -146,6 +194,13 @@ public class LinkedList<E extends Comparable<E>> {
         }
     }
     
+    /**
+     * Gets the element at the index given
+     * 
+     * @param index
+     *            index to get element for
+     * @return the element found at the index
+     */
     public E get(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
@@ -157,6 +212,11 @@ public class LinkedList<E extends Comparable<E>> {
         return (E) current.value;
     }
     
+    /**
+     * Gets size of list
+     * 
+     * @return size of list
+     */
     public int size() {
         return size;
     }
@@ -165,6 +225,9 @@ public class LinkedList<E extends Comparable<E>> {
      * Creates Nodes to be held by LinkedList
      * 
      * @author Caitlyn
+     * 
+     * @param <E>
+     *            generic parameter
      *
      */
     @SuppressWarnings("hiding")
@@ -190,6 +253,9 @@ public class LinkedList<E extends Comparable<E>> {
             next = node;
         }
         
+        /**
+         * Creates a new node setting value and next node to null
+         */
         public Node() {
             value = null;
             next = null;

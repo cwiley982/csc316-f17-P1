@@ -7,8 +7,25 @@ import java.util.Scanner;
 import edu.ncsu.csc316.airline_mileage.data.Airline;
 import edu.ncsu.csc316.airline_mileage.util.LinkedList;
 
+/**
+ * This class is able to read in an airline file and return a linked list of
+ * Airline objects
+ * 
+ * @author Caitlyn Wiley
+ *
+ */
 public class AirlineFileReader {
     
+    /**
+     * Reads in an airline file and constructs a linked list with Airline
+     * objects
+     * 
+     * @param filename
+     *            the file to read from
+     * @return a linked list of Airline objects
+     * @throws FileNotFoundException
+     *             if the file can't be found and read from
+     */
     public LinkedList<Airline> readfile(String filename) throws FileNotFoundException {
         LinkedList<Airline> airlines = new LinkedList<Airline>();
         Scanner scan = new Scanner(new File(filename));
@@ -19,15 +36,22 @@ public class AirlineFileReader {
             lineScan = new Scanner(line);
             lineScan.useDelimiter(",");
             String description = lineScan.next();
-            String airline_code = lineScan.next();
+            String airlineCode = lineScan.next();
             lineScan.close();
-            airlines.add(new Airline(description, airline_code));
+            airlines.add(new Airline(description, airlineCode));
             airlines.sort();
         }
         scan.close();
         return airlines;
     }
     
+    /**
+     * Constructs a 2D String array of airline codes and airline descriptions
+     * 
+     * @param airlines
+     *            the linked list of airlines to get info from
+     * @return 2D array containing airline codes and descriptions
+     */
     public String[][] get2DArray(LinkedList<Airline> airlines) {
         String[][] array = new String[airlines.size()][2];
         for (int i = 0; i < airlines.size(); i++) {

@@ -1,16 +1,30 @@
 package edu.ncsu.csc316.airline_mileage.data;
 
+/**
+ * Creates and airline object holding an airline code and descrption
+ * 
+ * @author Caitlyn
+ *
+ */
 public class Airline implements Comparable<Airline> {
     
     private String description;
-    private String airline_code;
+    private String airlineCode;
     
-    public Airline(String description, String airline_code) {
+    /**
+     * Constructs an airline object and sets the fields
+     * 
+     * @param description
+     * @param airlineCode
+     */
+    public Airline(String description, String airlineCode) {
         setDescription(description);
-        setAirlineCode(airline_code);
+        setAirlineCode(airlineCode);
     }
     
     /**
+     * Gets the full name of the airline
+     * 
      * @return the full name of the airline
      */
     public String getDescription() {
@@ -18,13 +32,17 @@ public class Airline implements Comparable<Airline> {
     }
     
     /**
-     * @return the airline_code
+     * Gets the airline code
+     * 
+     * @return the airlineCode
      */
     public String getAirlineCode() {
-        return airline_code;
+        return airlineCode;
     }
     
     /**
+     * Sets the description of the airline
+     * 
      * @param description
      *            the description to set
      */
@@ -33,11 +51,13 @@ public class Airline implements Comparable<Airline> {
     }
     
     /**
-     * @param airline_code
+     * Sets the airline code
+     * 
+     * @param airlineCode
      *            the airline_code to set
      */
-    private void setAirlineCode(String airline_code) {
-        this.airline_code = airline_code;
+    private void setAirlineCode(String airlineCode) {
+        this.airlineCode = airlineCode;
     }
     
     @Override
@@ -45,7 +65,7 @@ public class Airline implements Comparable<Airline> {
         // cast to airline
         Airline a = (Airline) o;
         // sort by description (airline name)
-        return airline_code.compareTo(a.getAirlineCode());
+        return airlineCode.compareTo(a.getAirlineCode());
     }
     
 }
