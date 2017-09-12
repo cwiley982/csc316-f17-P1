@@ -14,7 +14,6 @@ import edu.ncsu.csc316.airline_mileage.util.LinkedList;
 
 public class FlightFileReaderTest {
     
-    private LinkedList<Flight> flights;
     private String[][] airlineArray;
     private LinkedList<Flight> actual;
     private AirlineFileReader airlineReader = new AirlineFileReader();
@@ -22,13 +21,6 @@ public class FlightFileReaderTest {
     
     @Before
     public void setUp() throws Exception {
-        Flight united = new Flight("UA", "United Airlines", 346, "ORD", "MIA", 1197);
-        Flight delta = new Flight("DL", "Delta Air Lines", 1233, "ATL", "ORF", 516);
-        Flight jetblue = new Flight("B6", "JetBlue Airways", 1316, "FLL", "JAX", 319);
-        flights = new LinkedList<Flight>();
-        flights.add(united); // third
-        flights.add(delta); // second
-        flights.add(jetblue); // first
         LinkedList<Airline> airlines = airlineReader.readfile("input/airline_file");
         airlineArray = airlineReader.get2DArray(airlines);
     }
@@ -41,7 +33,8 @@ public class FlightFileReaderTest {
             assertEquals("B6", actual.get(0).getAirlineCode());
             assertEquals("RDU", actual.get(1).getOrigin());
             assertEquals(2115, actual.get(3).getFlightNumber());
-            assertEquals(5, actual.size());
+            assertEquals("SC2115", actual.get(3).getFlightString());
+            assertEquals(6, actual.size());
         } catch (FileNotFoundException e) {
             fail();
         }

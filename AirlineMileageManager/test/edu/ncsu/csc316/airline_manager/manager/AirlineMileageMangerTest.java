@@ -16,7 +16,7 @@ public class AirlineMileageMangerTest {
     private String kassandraStiltnerReport = "Kassandra Stiltner earned\n    5985 miles with United Airlines (UA)";
     private String fullReport = "Cameron Greene earned\n    215 miles with Sky Cameron (SC)\n\n"
             + erickMcfarlandReport + "\n\n" + kassandraStiltnerReport
-            + "\n\nCaitlyn Wiley earned\n    200 miles with Caitlyn Air Ways (CA)";
+            + "\n\nCaitlyn Wiley earned\n    200 miles with Caitlyn Air Ways (CA)\n\nErick Zynn earned\n    220 miles with Sky Cameron (SC)";
     
     @Test
     public void test() {

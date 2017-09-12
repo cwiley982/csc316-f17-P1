@@ -47,7 +47,7 @@ public class CustomerFileReaderTest {
             assertEquals("Greene", actual.get(0).getLastName());
             assertEquals("Erick", actual.get(1).getFirstName());
             assertEquals("Wiley", actual.get(3).getLastName());
-            assertEquals(4, actual.size());
+            assertEquals(5, actual.size());
         } catch (FileNotFoundException e) {
             fail();
         }
