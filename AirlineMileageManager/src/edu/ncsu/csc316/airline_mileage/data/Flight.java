@@ -32,12 +32,12 @@ public class Flight implements Comparable<Flight> {
         setArrivalDelay(arr_delay);
     }
     
-    /**
-     * @return the date
-     */
-    public String getDate() {
-        return date;
-    }
+    // /**
+    // * @return the date
+    // */
+    // public String getDate() {
+    // return date;
+    // }
     
     /**
      * @param year
