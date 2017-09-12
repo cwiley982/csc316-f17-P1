@@ -33,7 +33,7 @@ public class CustomerFileReader {
             lineScan.useDelimiter(",");
             String first = lineScan.next();
             String last = lineScan.next();
-            String dateString = lineScan.next();
+            lineScan.next(); // skips over date
             String flight = lineScan.next();
             String origin = lineScan.next();
             String dest = lineScan.next();
@@ -46,19 +46,20 @@ public class CustomerFileReader {
                                   // efficient, but still using merge sort
             } catch (IllegalArgumentException e) {
                 // customer exists, get original customer object
-                for (int i = 0; i < customers.size(); i++) {
-                    if (customers.get(i).equals(x)) {
-                        x = customers.get(i);
-                    }
-                }
+                x = customers.get(customers.binarySearch(0, customers.size() - 1, x));
+                // for (int i = 0; i < customers.size(); i++) {
+                // if (customers.get(i).equals(x)) {
+                // x = customers.get(i);
+                // }
+                // }
             }
-            x.addFlight(findMatch(dateString, flight, origin, dest));
+            x.addFlight(findMatch(flight, origin, dest));
         }
         scan.close();
         return customers;
     }
     
-    private Flight findMatch(String date, String flightString, String origin, String destination) {
+    private Flight findMatch(String flightString, String origin, String destination) {
         // find matching flight, use binary search
         int index = binarySearch(0, flights.size() - 1, flightString, origin, destination);
         if (index != -1) {

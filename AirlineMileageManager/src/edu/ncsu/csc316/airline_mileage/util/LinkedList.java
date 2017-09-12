@@ -131,14 +131,15 @@ public class LinkedList<E extends Comparable<E>> {
         return index != -1;
     }
     
-    private int binarySearch(int min, int max, E element) {
+    public int binarySearch(int min, int max, E element) {
         if (min > max) {
             return -1;
         }
-        int mid = (max - min) / 2 + min;
-        if (element.compareTo(get(mid)) == 0) {
+        int mid = ((max - min) / 2) + min;
+        E middle = get(mid);
+        if (element.compareTo(middle) == 0) {
             return mid;
-        } else if (element.compareTo(get(mid)) < 0) {
+        } else if (element.compareTo(middle) < 0) {
             return binarySearch(0, mid - 1, element);
         } else {
             return binarySearch(mid + 1, max, element);
