@@ -109,30 +109,26 @@ public class Flight implements Comparable<Flight> {
     
     @Override
     public int compareTo(Flight o) {
-        if (this.getAirlineCode().compareTo(o.getAirlineCode()) > 0) {
+        if (this.getFlightString().compareTo(o.getFlightString()) > 0) {
             return 1;
-        } else if (this.getAirlineCode().compareTo(o.getAirlineCode()) < 0) {
+        } else if (this.getFlightString().compareTo(o.getFlightString()) < 0) {
             return -1;
-        } else { // codes are the same
-            if (this.getFlightNumber() < o.getFlightNumber()) {
-                return -1;
-            } else if (this.getFlightNumber() > o.getFlightNumber()) {
+        } else { // flight strings are the same
+            if (this.getOrigin().compareTo(o.getOrigin()) > 0) {
                 return 1;
-            } else { // flight numbers are the same
-                if (this.getOrigin().compareTo(o.getOrigin()) > 0) {
+            } else if (this.getOrigin().compareTo(o.getOrigin()) < 0) {
+                return -1;
+            } else { // origins are the same
+                if (this.getDestination().compareTo(o.getDestination()) > 0) {
                     return 1;
-                } else if (this.getOrigin().compareTo(o.getOrigin()) < 0) {
+                } else if (this.getDestination().compareTo(o.getDestination()) < 0) {
                     return -1;
-                } else { // origins are the same
-                    if (this.getDestination().compareTo(o.getDestination()) > 0) {
-                        return 1;
-                    } else if (this.getDestination().compareTo(o.getDestination()) < 0) {
-                        return -1;
-                    } else { // destinations are the same
-                        return 0;
-                    }
+                } else { // destinations are the same, therefore the flight is
+                         // the same
+                    return 0;
                 }
             }
+            
         }
     }
     
