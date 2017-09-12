@@ -24,7 +24,7 @@ public class LinkedList<E extends Comparable<E>> {
         if (element == null) {
             throw new NullPointerException();
         }
-        if (contains(element)) {
+        if (isInList(element)) {
             throw new IllegalArgumentException();
         }
         front = new Node<E>(element, front);
@@ -115,27 +115,35 @@ public class LinkedList<E extends Comparable<E>> {
      * current.next; } current.next = new Node<E>(element, null); } }
      */
     
-    public boolean contains(E element) {
-        Node<E> current = front;
-        for (int i = 0; i < size; i++) {
-            if (current.value.equals(element)) {
-                return true;
-            }
-            current = current.next;
-        }
-        return false;
+    // public boolean contains(E element) {
+    // Node<E> current = front;
+    // for (int i = 0; i < size; i++) {
+    // if (current.value.equals(element)) {
+    // return true;
+    // }
+    // current = current.next;
+    // }
+    // return false;
+    // }
+    
+    public boolean isInList(E element) { // do a binary search
+        int index = binarySearch(0, size - 1, element);
+        return index != -1;
     }
     
-    /*
-     * public boolean isInList(E element) { // do a binary search int index =
-     * binarySearch(0, size - 1, element); return index != -1; }
-     * 
-     * private int binarySearch(int min, int max, E element) { if (min > max) {
-     * return -1; } int mid = (max - min) / 2 + min; if
-     * (element.compareTo(get(mid)) == 0) { return mid; } else if
-     * (element.compareTo(get(mid)) < 0) { return binarySearch(0, mid - 1,
-     * element); } else { return binarySearch(mid + 1, max, element); } }
-     */
+    private int binarySearch(int min, int max, E element) {
+        if (min > max) {
+            return -1;
+        }
+        int mid = (max - min) / 2 + min;
+        if (element.compareTo(get(mid)) == 0) {
+            return mid;
+        } else if (element.compareTo(get(mid)) < 0) {
+            return binarySearch(0, mid - 1, element);
+        } else {
+            return binarySearch(mid + 1, max, element);
+        }
+    }
     
     public E get(int index) {
         if (index < 0 || index >= size) {

@@ -32,6 +32,7 @@ public class FlightFileReader {
             String airline = getAirline(airline_code, airlineArray);
             flights.add(new Flight(airline_code, airline, flight_num, origin, dest,
                     distance));
+            flights.sort();
             lineScan.close();
         }
         scan.close();

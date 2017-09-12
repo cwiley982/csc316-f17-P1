@@ -22,6 +22,7 @@ public class AirlineFileReader {
             String airline_code = lineScan.next();
             lineScan.close();
             airlines.add(new Airline(description, airline_code));
+            airlines.sort();
         }
         scan.close();
         return airlines;

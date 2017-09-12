@@ -42,6 +42,8 @@ public class CustomerFileReader {
             Customer x = new Customer(first, last);
             try {
                 customers.add(x);
+                customers.sort(); // sorting after adding to make contains more
+                                  // efficient, but still using merge sort
             } catch (IllegalArgumentException e) {
                 // customer exists, get original customer object
                 for (int i = 0; i < customers.size(); i++) {
