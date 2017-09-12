@@ -14,8 +14,8 @@ import edu.ncsu.csc316.airline_mileage.util.LinkedList;
 public class LinkedListTest {
     
     private String firstExpectedAirlineCode = "B6";
-    private String secondExpectedAirlineCode = "DL";
-    private String thirdExpectedDescription = "United Airlines";
+    private String secondExpectedAirlineCode = "CA";
+    private String thirdExpectedDescription = "Delta Air Lines";
     private String airlineFilename = "input/airline_file";
     private AirlineFileReader airlineReader = new AirlineFileReader();
     private LinkedList<Airline> airlines;

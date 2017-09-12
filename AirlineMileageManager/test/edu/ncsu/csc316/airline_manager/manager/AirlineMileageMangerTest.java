@@ -14,7 +14,9 @@ public class AirlineMileageMangerTest {
     private String customerFile = "input/customer_file";
     private String erickMcfarlandReport = "Erick Mcfarland earned\n    3591 miles with United Airlines (UA)\n    516 miles with Delta Air Lines (DL)\n    319 miles with JetBlue Airways (B6)";
     private String kassandraStiltnerReport = "Kassandra Stiltner earned\n    5985 miles with United Airlines (UA)";
-    private String fullReport = erickMcfarlandReport + "\n\n" + kassandraStiltnerReport;
+    private String fullReport = "Cameron Greene earned\n    215 miles with Sky Cameron (SC)\n\n"
+            + erickMcfarlandReport + "\n\n" + kassandraStiltnerReport
+            + "\n\nCaitlyn Wiley earned\n    200 miles with Caitlyn Air Ways (CA)";
     
     @Test
     public void test() {

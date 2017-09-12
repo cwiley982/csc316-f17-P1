@@ -21,8 +21,8 @@ public class AirlineFileReaderTest {
         try {
             actual = airlineReader.readfile(filename);
             actual.sort();
-            assertEquals("DL", actual.get(1).getAirlineCode());
-            assertEquals("United Airlines", actual.get(2).getDescription());
+            assertEquals("CA", actual.get(1).getAirlineCode());
+            assertEquals("Delta Air Lines", actual.get(2).getDescription());
         } catch (FileNotFoundException e) {
             fail();
         }
