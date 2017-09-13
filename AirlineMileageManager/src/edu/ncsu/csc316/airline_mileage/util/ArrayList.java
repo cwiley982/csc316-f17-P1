@@ -96,6 +96,18 @@ public class ArrayList<E extends Comparable<E>> {
         }
     }
     
+    /**
+     * Merges the two halves of a list
+     * 
+     * @param min
+     *            the minimum index to look at
+     * @param mid
+     *            the middle index to look at
+     * @param max
+     *            the max index to look at
+     * @param temp
+     *            the array to read from
+     */
     public void mergeParts(int min, int mid, int max, E[] temp) {
         
         int leftIndex = min;

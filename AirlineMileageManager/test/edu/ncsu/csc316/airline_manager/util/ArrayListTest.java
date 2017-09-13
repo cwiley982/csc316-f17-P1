@@ -50,6 +50,9 @@ public class ArrayListTest {
         assertEquals(thirdExpectedDescription, airlines.get(2).getDescription());
     }
     
+    /**
+     * tests the grow array method
+     */
     @Test
     public void testGrowArray() {
         ArrayList<String> array = new ArrayList<String>();
