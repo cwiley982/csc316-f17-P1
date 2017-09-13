@@ -12,6 +12,8 @@ public class ArrayList<E extends Comparable<E>> {
     
     private E[] data;
     private int size;
+    private E[] temp;
+    private E[] merged;
     
     private static final int INIT_SIZE = 16;
     private static final int RESIZE = 2;
@@ -46,7 +48,7 @@ public class ArrayList<E extends Comparable<E>> {
     
     @SuppressWarnings("unchecked")
     private void growArray() {
-        E[] temp = (E[]) new Comparable[data.length * RESIZE];
+        temp = (E[]) new Comparable[data.length * RESIZE];
         for (int i = 0; i < data.length; i++) {
             temp[i] = data[i];
         }
@@ -58,42 +60,84 @@ public class ArrayList<E extends Comparable<E>> {
      */
     @SuppressWarnings("unchecked")
     public void sort() {
-        E[] temp = (E[]) new Comparable[size];
+        temp = (E[]) new Comparable[size];
+        merged = (E[]) new Comparable[size];
         for (int i = 0; i < size; i++) {
             temp[i] = data[i];
         }
-        data = mergeSort(temp);
+        mergeSort(0, temp.length - 1, temp);
+        data = merged;
     }
     
     /**
      * Breaks the list into left and right recursively until each side only has
      * one node, then combines left and right and sorts as it goes
      * 
-     * @param list
+     * @param temp
      *            the list to split in half recursively then sort
      * @return the sorted array
      */
     @SuppressWarnings("unchecked")
-    public E[] mergeSort(E[] list) {
-        if (list.length == 1) {
-            return list;
+    public void mergeSort(int min, int max, E[] temp) {
+        if (min < max) {
+            // Find the middle point
+            int mid = (min + max) / 2;
+            
+            // Sort first and second halves
+            mergeSort(min, mid, temp);
+            mergeSort(mid + 1, max, temp);
+            
+            // Merge the sorted halves
+            mergeParts(min, mid, max, temp);
         }
-        int high = list.length - 1;
-        int middle = high / 2;
-        int index = 0;
-        E[] left = (E[]) new Comparable[middle + 1];
-        while (index <= middle) {
-            left[index] = list[index];
-            index++;
+    }
+    
+    @SuppressWarnings("unchecked")
+    public void mergeParts(int min, int mid, int max, E[] temp) {
+        
+        int leftIndex = min;
+        int rightIndex = mid + 1;
+        int mergedIndex = min;
+        
+        /*
+         * The problem I'm having is that because I don't have 2 arrays (left
+         * and right) to pull from, every time I add something to temp, I lose
+         * reference to whatever was there before. I don't want to have left and
+         * right arrays because that requires a lot of time to create eacha
+         * array with half of the data of the main array
+         */
+        while (leftIndex <= mid && rightIndex <= max) {
+            if (temp[leftIndex].compareTo(temp[rightIndex]) < 0) {
+                merged[mergedIndex] = temp[leftIndex];
+                
+                leftIndex++;
+            } else {
+                merged[mergedIndex] = temp[rightIndex];
+                rightIndex++;
+            }
+            mergedIndex++;
         }
-        E[] right = (E[]) new Comparable[high - middle];
-        while (index < list.length) {
-            right[index - (middle + 1)] = list[index];
-            index++;
+        
+        // copy anything left over from left
+        while (leftIndex <= mid) {
+            merged[mergedIndex] = temp[leftIndex];
+            leftIndex++;
+            mergedIndex++;
         }
-        left = mergeSort(left);
-        right = mergeSort(right);
-        return mergeParts(left, right);
+        
+        // Copy anything leftover from right
+        while (rightIndex <= max) {
+            merged[mergedIndex] = temp[rightIndex];
+            rightIndex++;
+            mergedIndex++;
+        }
+        
+        // copy sorted chunk from merged into temp
+        int mergedStart = min;
+        while (mergedStart <= max) {
+            temp[mergedStart] = merged[mergedStart];
+            mergedStart++;
+        }
     }
     
     /**

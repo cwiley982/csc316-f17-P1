@@ -33,7 +33,7 @@ public class AirlineMileageManager {
     /** Creates a CustomerFileReader object to read in the customer file */
     private CustomerFileReader customerReader = new CustomerFileReader();
     /**
-     * Stores the airline codes and descriptions for each airline, to ba
+     * Stores the airline codes and descriptions for each airline, to be
      * accessed in flight reader
      */
     private String[][] airlineCodesAndNames;
@@ -54,7 +54,6 @@ public class AirlineMileageManager {
             airlines = airlineReader.readfile(pathToAirlineFile);
             airlines.sort();
             airlineCodesAndNames = airlineReader.get2DArray(airlines);
-            
             flights = flightReader.readfile(pathToFlightFile, airlineCodesAndNames);
             flights.sort();
             customers = customerReader.readfile(pathToCustomerFile, flights);
