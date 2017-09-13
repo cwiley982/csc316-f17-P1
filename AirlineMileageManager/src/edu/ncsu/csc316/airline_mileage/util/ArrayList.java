@@ -73,9 +73,14 @@ public class ArrayList<E extends Comparable<E>> {
      * Breaks the list into left and right recursively until each side only has
      * one node, then combines left and right and sorts as it goes
      * 
+     * @param min
+     *            the minimum index for the current chunk of the list being
+     *            sorted
+     * @param max
+     *            the maximum index for the current chunk of the list being
+     *            sorted
      * @param temp
      *            the list to split in half recursively then sort
-     * @return the sorted array
      */
     public void mergeSort(int min, int max, E[] temp) {
         if (min < max) {
