@@ -77,7 +77,6 @@ public class ArrayList<E extends Comparable<E>> {
      *            the list to split in half recursively then sort
      * @return the sorted array
      */
-    @SuppressWarnings("unchecked")
     public void mergeSort(int min, int max, E[] temp) {
         if (min < max) {
             // Find the middle point
@@ -92,7 +91,6 @@ public class ArrayList<E extends Comparable<E>> {
         }
     }
     
-    @SuppressWarnings("unchecked")
     public void mergeParts(int min, int mid, int max, E[] temp) {
         
         int leftIndex = min;
@@ -139,48 +137,48 @@ public class ArrayList<E extends Comparable<E>> {
         }
     }
     
-    /**
-     * Merges the two sides together then returns a sorted array
-     * 
-     * @param left
-     *            the left array to merge with right
-     * @param right
-     *            the right array to merge with left
-     * @return the merged array
-     */
-    @SuppressWarnings("unchecked")
-    public E[] mergeParts(E[] left, E[] right) {
-        E[] tempArray = (E[]) new Comparable[left.length + right.length];
-        int leftIndex = 0;
-        int rightIndex = 0;
-        int indexToAddTo = 0;
-        while (leftIndex < left.length && rightIndex < right.length) {
-            if (left[leftIndex].compareTo(right[rightIndex]) < 0) {
-                tempArray[indexToAddTo] = left[leftIndex];
-                leftIndex++;
-            } else if (left[leftIndex].compareTo(right[rightIndex]) > 0) {
-                tempArray[indexToAddTo] = right[rightIndex];
-                rightIndex++;
-            }
-            indexToAddTo++;
-        }
-        
-        if (leftIndex == left.length) {
-            while (rightIndex < right.length) {
-                tempArray[indexToAddTo] = right[rightIndex];
-                rightIndex++;
-                indexToAddTo++;
-            }
-        } else if (rightIndex == right.length) {
-            while (leftIndex < left.length) {
-                tempArray[indexToAddTo] = left[leftIndex];
-                leftIndex++;
-                indexToAddTo++;
-            }
-        }
-        
-        return tempArray;
-    }
+    // /**
+    // * Merges the two sides together then returns a sorted array
+    // *
+    // * @param left
+    // * the left array to merge with right
+    // * @param right
+    // * the right array to merge with left
+    // * @return the merged array
+    // */
+    // @SuppressWarnings("unchecked")
+    // public E[] mergeParts(E[] left, E[] right) {
+    // E[] tempArray = (E[]) new Comparable[left.length + right.length];
+    // int leftIndex = 0;
+    // int rightIndex = 0;
+    // int indexToAddTo = 0;
+    // while (leftIndex < left.length && rightIndex < right.length) {
+    // if (left[leftIndex].compareTo(right[rightIndex]) < 0) {
+    // tempArray[indexToAddTo] = left[leftIndex];
+    // leftIndex++;
+    // } else if (left[leftIndex].compareTo(right[rightIndex]) > 0) {
+    // tempArray[indexToAddTo] = right[rightIndex];
+    // rightIndex++;
+    // }
+    // indexToAddTo++;
+    // }
+    //
+    // if (leftIndex == left.length) {
+    // while (rightIndex < right.length) {
+    // tempArray[indexToAddTo] = right[rightIndex];
+    // rightIndex++;
+    // indexToAddTo++;
+    // }
+    // } else if (rightIndex == right.length) {
+    // while (leftIndex < left.length) {
+    // tempArray[indexToAddTo] = left[leftIndex];
+    // leftIndex++;
+    // indexToAddTo++;
+    // }
+    // }
+    //
+    // return tempArray;
+    // }
     
     /**
      * Searches recursively to find the element by narrowing down the list to
