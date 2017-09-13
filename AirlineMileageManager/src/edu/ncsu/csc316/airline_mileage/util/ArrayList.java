@@ -124,7 +124,6 @@ public class ArrayList<E extends Comparable<E>> {
             leftIndex++;
             mergedIndex++;
         }
-        
         // Copy anything leftover from right
         while (rightIndex <= max) {
             merged[mergedIndex] = temp[rightIndex];
