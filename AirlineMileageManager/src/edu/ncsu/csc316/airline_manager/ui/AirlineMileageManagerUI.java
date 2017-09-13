@@ -2,6 +2,7 @@ package edu.ncsu.csc316.airline_manager.ui;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 import edu.ncsu.csc316.airline_mileage.manager.AirlineMileageManager;
@@ -68,6 +69,8 @@ public class AirlineMileageManagerUI {
         System.out.println("Would you like to query a customer (Q), print a mileage report (R), "
                 + "or exit the program (E)? ");
         String command = in.next();
+        
+        String output = "";
         while (!command.equalsIgnoreCase("E")) {
             // handle user requests
             if (command.equalsIgnoreCase("Q")) {
@@ -77,9 +80,9 @@ public class AirlineMileageManagerUI {
                 System.out.println("Enter the last name of the customer: ");
                 String lastName = in.next();
                 // print customer report
-                manager.getMiles(firstName, lastName);
+                output += manager.getMiles(firstName, lastName) + "\n\n";
             } else if (command.equalsIgnoreCase("R")) {
-                manager.getMileageReport();
+                output += manager.getMileageReport() + "\n\n";
             } else {
                 System.out.println("Invalid command. Please try again.");
             }
@@ -87,6 +90,12 @@ public class AirlineMileageManagerUI {
                     .println("Would you like to query a customer (Q), print a mileage report (R), "
                             + "or exit the program (E)? ");
             command = in.next();
+        }
+        try {
+            PrintStream fileWriter = new PrintStream(new File("output/reportOutput.txt"));
+            fileWriter.println(output);
+        } catch (FileNotFoundException e) {
+            System.out.println("Could not write to file");
         }
         System.out.println("Thank you for using AirlineMileageManager!");
         

@@ -97,13 +97,6 @@ public class ArrayList<E extends Comparable<E>> {
         int rightIndex = mid + 1;
         int mergedIndex = min;
         
-        /*
-         * The problem I'm having is that because I don't have 2 arrays (left
-         * and right) to pull from, every time I add something to temp, I lose
-         * reference to whatever was there before. I don't want to have left and
-         * right arrays because that requires a lot of time to create eacha
-         * array with half of the data of the main array
-         */
         while (leftIndex <= mid && rightIndex <= max) {
             if (temp[leftIndex].compareTo(temp[rightIndex]) < 0) {
                 merged[mergedIndex] = temp[leftIndex];
@@ -137,49 +130,6 @@ public class ArrayList<E extends Comparable<E>> {
         }
     }
     
-    // /**
-    // * Merges the two sides together then returns a sorted array
-    // *
-    // * @param left
-    // * the left array to merge with right
-    // * @param right
-    // * the right array to merge with left
-    // * @return the merged array
-    // */
-    // @SuppressWarnings("unchecked")
-    // public E[] mergeParts(E[] left, E[] right) {
-    // E[] tempArray = (E[]) new Comparable[left.length + right.length];
-    // int leftIndex = 0;
-    // int rightIndex = 0;
-    // int indexToAddTo = 0;
-    // while (leftIndex < left.length && rightIndex < right.length) {
-    // if (left[leftIndex].compareTo(right[rightIndex]) < 0) {
-    // tempArray[indexToAddTo] = left[leftIndex];
-    // leftIndex++;
-    // } else if (left[leftIndex].compareTo(right[rightIndex]) > 0) {
-    // tempArray[indexToAddTo] = right[rightIndex];
-    // rightIndex++;
-    // }
-    // indexToAddTo++;
-    // }
-    //
-    // if (leftIndex == left.length) {
-    // while (rightIndex < right.length) {
-    // tempArray[indexToAddTo] = right[rightIndex];
-    // rightIndex++;
-    // indexToAddTo++;
-    // }
-    // } else if (rightIndex == right.length) {
-    // while (leftIndex < left.length) {
-    // tempArray[indexToAddTo] = left[leftIndex];
-    // leftIndex++;
-    // indexToAddTo++;
-    // }
-    // }
-    //
-    // return tempArray;
-    // }
-    
     /**
      * Searches recursively to find the element by narrowing down the list to
      * half of the previous list each time
@@ -201,7 +151,7 @@ public class ArrayList<E extends Comparable<E>> {
         if (element.compareTo(middle) == 0) {
             return mid;
         } else if (element.compareTo(middle) < 0) {
-            return binarySearch(0, mid - 1, element);
+            return binarySearch(min, mid - 1, element);
         } else {
             return binarySearch(mid + 1, max, element);
         }
