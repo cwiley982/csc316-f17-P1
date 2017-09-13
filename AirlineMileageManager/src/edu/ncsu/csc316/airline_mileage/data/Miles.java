@@ -148,11 +148,12 @@ public class Miles {
      */
     public String getMilesReport() {
         sort();
-        String milesReport = "";
+        
+        StringBuilder milesReport = new StringBuilder();
         for (int i = 0; i < rows; i++) {
-            milesReport += "\n    " + mileage[i][0] + " miles with " + mileage[i][1] + " "
-                    + mileage[i][2];
+            milesReport.append("\n    ").append(mileage[i][0]).append(" miles with ")
+                    .append(mileage[i][1]).append(" ").append(mileage[i][2]);
         }
-        return milesReport;
+        return milesReport.toString();
     }
 }

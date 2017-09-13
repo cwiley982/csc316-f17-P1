@@ -70,14 +70,14 @@ public class AirlineMileageManager {
      * @return the mileage report for all customers
      */
     public String getMileageReport() {
-        String report = "";
+        StringBuilder report = new StringBuilder();
         for (int i = 0; i < customers.size(); i++) {
-            report += customers.get(i).getMileageReport();
+            report.append(customers.get(i).getMileageReport());
             if (i < customers.size() - 1) {
-                report += "\n\n";
+                report.append("\n\n");
             }
         }
-        return report;
+        return report.toString();
     }
     
     /**
@@ -109,7 +109,7 @@ public class AirlineMileageManager {
      * @param last
      *            last name of the customer
      * @return a Customer object holding the customer with matching first and
-     *         last names, null is no sch customer exists
+     *         last names, null if no such customer exists
      */
     private Customer getCustomer(String first, String last) {
         Customer c = new Customer(first, last);

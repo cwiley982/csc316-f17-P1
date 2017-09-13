@@ -15,7 +15,7 @@ public class Customer implements Comparable<Customer> {
     /** Keeps track of miles accumulated with each airline */
     private Miles miles;
     /** Holds a string representation of a customer's mileage report */
-    private String report;
+    private StringBuilder report;
     
     /**
      * Constructs a customer with first and last name and sets fields
@@ -29,7 +29,7 @@ public class Customer implements Comparable<Customer> {
         setFirstName(firstName);
         setLastName(lastName);
         miles = new Miles();
-        report = "";
+        report = new StringBuilder();
     }
     
     /**
@@ -49,10 +49,11 @@ public class Customer implements Comparable<Customer> {
      * @return string describing miles flown
      */
     public String getMileageReport() {
-        if (report.isEmpty()) {
-            report += firstName + " " + lastName + " earned" + miles.getMilesReport();
+        if (report.length() == 0) {
+            report.append(firstName).append(" ").append(lastName).append(" earned")
+                    .append(miles.getMilesReport());
         }
-        return report;
+        return report.toString();
     }
     
     /**
