@@ -33,7 +33,7 @@ public class FlightFileReaderTest {
      */
     @Before
     public void setUp() throws Exception {
-        ArrayList<Airline> airlines = airlineReader.readfile("input/airline_file");
+        ArrayList<Airline> airlines = airlineReader.readfile("input/airline_file.txt");
         airlineArray = airlineReader.get2DArray(airlines);
     }
     
@@ -43,7 +43,7 @@ public class FlightFileReaderTest {
     @Test
     public void testFileReader() {
         try {
-            actual = flightReader.readfile("input/flight_file", airlineArray);
+            actual = flightReader.readfile("input/flight_file.txt", airlineArray);
             actual.sort();
             assertEquals("B6", actual.get(0).getAirlineCode());
             assertEquals("RDU", actual.get(1).getOrigin());

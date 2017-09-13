@@ -81,8 +81,10 @@ public class AirlineMileageManagerUI {
                 String lastName = in.next();
                 // print customer report
                 output += manager.getMiles(firstName, lastName) + "\n\n";
+                System.out.println(manager.getMiles(firstName, lastName) + "\n\n");
             } else if (command.equalsIgnoreCase("R")) {
                 output += manager.getMileageReport() + "\n\n";
+                System.out.println(manager.getMileageReport() + "\n\n");
             } else {
                 System.out.println("Invalid command. Please try again.");
             }

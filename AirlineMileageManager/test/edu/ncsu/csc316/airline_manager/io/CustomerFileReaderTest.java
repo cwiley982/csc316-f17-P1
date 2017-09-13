@@ -21,7 +21,7 @@ import edu.ncsu.csc316.airline_mileage.util.ArrayList;
  */
 public class CustomerFileReaderTest {
     
-    private String filename = "input/customer_file";
+    private String filename = "input/customer_file.txt";
     private ArrayList<Customer> customers = new ArrayList<Customer>();
     private ArrayList<Flight> flights;
     private ArrayList<Customer> actual;
@@ -39,9 +39,9 @@ public class CustomerFileReaderTest {
         customers.add(c1);
         customers.add(c2);
         try {
-            ArrayList<Airline> airlines = airlineReader.readfile("input/airline_file");
+            ArrayList<Airline> airlines = airlineReader.readfile("input/airline_file.txt");
             String[][] airlineArray = airlineReader.get2DArray(airlines);
-            flights = flightReader.readfile("input/flight_file", airlineArray);
+            flights = flightReader.readfile("input/flight_file.txt", airlineArray);
             flights.sort();
         } catch (FileNotFoundException e) {
             fail();
@@ -56,7 +56,7 @@ public class CustomerFileReaderTest {
         try {
             actual = customerReader.readfile(filename, flights);
             actual.sort();
-            assertEquals("Greene", actual.get(0).getLastName());
+            assertEquals("Gilligan", actual.get(0).getLastName());
             assertEquals("Erick", actual.get(1).getFirstName());
             assertEquals("Wiley", actual.get(3).getLastName());
             assertEquals(5, actual.size());

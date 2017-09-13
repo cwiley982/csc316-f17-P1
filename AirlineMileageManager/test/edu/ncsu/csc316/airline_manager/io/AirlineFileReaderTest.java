@@ -18,7 +18,7 @@ import edu.ncsu.csc316.airline_mileage.util.ArrayList;
  */
 public class AirlineFileReaderTest {
     
-    private String filename = "input/airline_file";
+    private String filename = "input/airline_file.txt";
     private ArrayList<Airline> actual;
     private AirlineFileReader airlineReader = new AirlineFileReader();
     

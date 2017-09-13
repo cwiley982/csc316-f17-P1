@@ -23,7 +23,7 @@ public class ArrayListTest {
     private String firstExpectedAirlineCode = "B6";
     private String secondExpectedAirlineCode = "CA";
     private String thirdExpectedDescription = "Delta Air Lines";
-    private String airlineFilename = "input/airline_file";
+    private String airlineFilename = "input/airline_file.txt";
     private AirlineFileReader airlineReader = new AirlineFileReader();
     private ArrayList<Airline> airlines;
     

@@ -1,1 +1,5 @@
+edu.ncsu.csc316.airline_manager.io
+edu.ncsu.csc316.airline_manager.ui
+edu.ncsu.csc316.airline_mileage.data
 edu.ncsu.csc316.airline_mileage.manager
+edu.ncsu.csc316.airline_mileage.util
